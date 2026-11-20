@@ -1,32 +1,242 @@
-/* Go 品牌青作为主色 */
+/* ============================================================
+   配色：Go 品牌青 + 安全帽黄 + 珊瑚 + 奶油（与插图同一套色板）
+   ============================================================ */
 :root {
-  --md-primary-fg-color: #00add8;
+  --dp-teal: #00add8;
+  --dp-teal-dark: #007d9c;
+  --dp-yellow: #fdc93b;
+  --dp-coral: #f2735a;
+  --dp-cream: #fff8ec;
+  --dp-soft: rgba(0, 173, 216, 0.07);
+  --dp-line: rgba(0, 125, 156, 0.18);
+
+  --md-primary-fg-color: var(--dp-teal);
   --md-primary-fg-color--light: #5dc9e2;
-  --md-primary-fg-color--dark: #007d9c;
-  --md-accent-fg-color: #f2735a;
+  --md-primary-fg-color--dark: var(--dp-teal-dark);
+  --md-accent-fg-color: var(--dp-coral);
+
+  /* 系统字体栈：中文优先苹方 / 雅黑，代码用等宽字体 */
+  --md-text-font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --md-code-font-family: "JetBrains Mono", "Cascadia Code", "SF Mono", Consolas, monospace;
 }
 
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #007d9c;
-  --md-accent-fg-color: #f2735a;
+  --md-primary-fg-color: #0b6f88;
+  --dp-cream: rgba(253, 201, 59, 0.06);
+  --dp-soft: rgba(0, 173, 216, 0.1);
+  --dp-line: rgba(93, 201, 226, 0.25);
 }
 
-/* 章首插图：圆角、居中 */
+/* ---------- 正文排版：中文行距放宽 ---------- */
+.md-typeset {
+  font-size: 0.8rem;
+  line-height: 1.8;
+}
+
+.md-typeset code {
+  font-size: 0.85em;
+  border-radius: 4px;
+}
+
+/* 一级标题：底部青→黄渐变短条 */
+.md-typeset h1 {
+  font-weight: 700;
+  color: var(--md-default-fg-color);
+  margin-bottom: 0.6em;
+}
+
+.md-typeset h1::after {
+  content: "";
+  display: block;
+  width: 3.2rem;
+  height: 0.28rem;
+  margin-top: 0.5rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--dp-teal), var(--dp-yellow));
+}
+
+/* 二级标题：左侧青色竖条 */
+.md-typeset h2 {
+  font-weight: 700;
+  padding-left: 0.7rem;
+  border-left: 0.25rem solid var(--dp-teal);
+  line-height: 1.4;
+}
+
+.md-typeset h3 {
+  font-weight: 700;
+  color: var(--dp-teal-dark);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h3 {
+  color: #5dc9e2;
+}
+
+/* 荧光笔高亮（==文字==），每章只给最关键的一两句话用 */
+.md-typeset mark {
+  background: linear-gradient(transparent 55%, rgba(253, 201, 59, 0.55) 55%);
+  color: inherit;
+  padding: 0 0.1em;
+}
+
+/* ---------- 章首信息条 ---------- */
+.md-typeset .pattern-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: -0.4rem 0 1.2rem;
+}
+
+.md-typeset .pattern-meta span:not(.twemoji) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background: var(--dp-soft);
+  color: var(--dp-teal-dark);
+  border: 1px solid var(--dp-line);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .pattern-meta span:not(.twemoji) {
+  color: #8fdcef;
+}
+
+/* ---------- 「一句话」：奶油底大字卡片 ---------- */
+.md-typeset .admonition.abstract {
+  border: none;
+  border-left: 0.3rem solid var(--dp-yellow);
+  border-radius: 10px;
+  background: var(--dp-cream);
+  box-shadow: none;
+  font-size: 0.85rem;
+}
+
+.md-typeset .abstract > .admonition-title {
+  background: transparent;
+  color: #b8860b;
+  font-weight: 700;
+}
+
+.md-typeset .abstract > .admonition-title::before {
+  background-color: var(--dp-yellow);
+}
+
+/* ---------- 插图 ---------- */
 .md-typeset img {
   display: block;
   margin: 0 auto;
-  border-radius: 12px;
+  border-radius: 16px;
 }
 
-/* 图注 */
+.md-typeset p > img[src*="/images/"]:not([src*="mascot"]) {
+  box-shadow: 0 6px 24px rgba(0, 60, 80, 0.12);
+}
+
 .md-typeset p.caption {
   text-align: center;
   color: var(--md-default-fg-color--light);
-  font-size: 0.75rem;
-  margin-top: 0.4rem;
+  font-size: 0.7rem;
+  margin: 0.7rem auto 0;
+  max-width: 34rem;
 }
 
-/* Mermaid 图居中 */
+/* ---------- 表格：圆角、浅青表头、无粗线 ---------- */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--dp-line);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 0.75rem;
+  box-shadow: none;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--dp-soft);
+  color: var(--dp-teal-dark);
+  font-weight: 700;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  color: #8fdcef;
+}
+
+.md-typeset table:not([class]) td {
+  border-top: 1px solid var(--dp-line);
+}
+
+/* ---------- 代码块 ---------- */
+.md-typeset pre > code {
+  border-radius: 10px;
+}
+
+/* ---------- 在线运行按钮：实心胶囊 ---------- */
+.md-typeset .md-button {
+  border-radius: 999px;
+  font-size: 0.75rem;
+  padding: 0.45em 1.4em;
+}
+
+.md-typeset .md-button--primary:hover,
+.md-typeset .md-button--primary:focus {
+  background-color: var(--dp-coral);
+  border-color: var(--dp-coral);
+}
+
+/* ---------- 提示框：字号接近正文，便于阅读 ---------- */
+.md-typeset .admonition,
+.md-typeset details {
+  font-size: 0.75rem;
+}
+
+/* ---------- 适合 / 不适合：双栏卡片 ---------- */
+.md-typeset .grid > .admonition {
+  margin: 0;
+  border-radius: 10px;
+}
+
+/* ---------- 小结：吉祥物「划重点」 ---------- */
+.md-typeset .admonition.takeaway {
+  border: 1px solid var(--dp-line);
+  border-radius: 12px;
+  background: var(--dp-soft);
+  box-shadow: none;
+}
+
+.md-typeset .takeaway > .admonition-title {
+  background: transparent;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding-left: 3.2rem;
+  min-height: 2.6rem;
+  display: flex;
+  align-items: center;
+}
+
+.md-typeset .takeaway > .admonition-title::before {
+  width: 2.2rem;
+  height: 2.2rem;
+  top: 0.25rem;
+  left: 0.6rem;
+  background: url("../assets/images/mascot.webp") center / contain no-repeat;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.md-typeset .takeaway ul {
+  margin-top: 0;
+}
+
+/* ---------- 进阶折叠块：更轻的边框 ---------- */
+.md-typeset details {
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+/* ---------- Mermaid ---------- */
 .md-typeset .mermaid {
   text-align: center;
+  padding: 0.8rem;
+  border-radius: 12px;
+  background: var(--dp-soft);
 }

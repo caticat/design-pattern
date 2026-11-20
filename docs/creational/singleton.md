@@ -1,5 +1,11 @@
 # 单例模式
 
+<div class="pattern-meta" markdown>
+<span>:material-shape-outline: 创建型</span>
+<span>:material-signal-cellular-1: 难度 入门</span>
+<span>:material-fire: 使用频率 高</span>
+</div>
+
 !!! abstract "一句话"
     保证一个类型在整个程序中**只有一个实例**，并提供一个全局访问点。
 
@@ -17,11 +23,12 @@
 --8<-- "codes/creational/singleton/bad.go:bad"
 ```
 
-单线程下没问题。但 Go 程序天然是并发的：两个 goroutine 同时发现 `naive == nil`，配置就会被加载两次，还存在数据竞争（`go test -race` 会报出来）。
+!!! bug "并发下会出错"
+    单线程下没问题。但 Go 程序天然是并发的：两个 goroutine 同时发现 `naive == nil`，配置就会被**加载两次**，还存在数据竞争（`go test -race` 会报出来）。
 
 ## 方案
 
-把「创建」收进一个访问函数，并用同步原语保证**无论多少 goroutine 同时调用，创建只发生一次**。
+把「创建」收进一个访问函数，并用同步原语保证==无论多少 goroutine 同时调用，创建只发生一次==。
 
 ```mermaid
 sequenceDiagram
@@ -46,17 +53,23 @@ sequenceDiagram
 
 ## Go 实现
 
-经典写法：`sync.Once` + 包级变量 + 访问函数。
+两种写法效果完全相同，任选其一：
 
-```go
---8<-- "codes/creational/singleton/singleton.go:classic"
-```
+=== "经典写法"
 
-Go 1.21 起，`sync.OnceValue` 把这三件套合成一行，效果完全相同：
+    `sync.Once` + 包级变量 + 访问函数：
 
-```go
---8<-- "codes/creational/singleton/singleton.go:idiom"
-```
+    ```go
+    --8<-- "codes/creational/singleton/singleton.go:classic"
+    ```
+
+=== "Go 1.21+ 惯用写法"
+
+    `sync.OnceValue` 把三件套合成一行：
+
+    ```go
+    --8<-- "codes/creational/singleton/singleton.go:idiom"
+    ```
 
 使用示例：
 
@@ -64,7 +77,7 @@ Go 1.21 起，`sync.OnceValue` 把这三件套合成一行，效果完全相同�
 --8<-- "codes/creational/singleton/example_test.go"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/LvUpyH9k3Uq){ .md-button target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/cZeYy1z7jZO){ .md-button .md-button--primary target=_blank }
 
 ### 单例 vs 全局变量
 
@@ -82,17 +95,26 @@ Go 1.21 起，`sync.OnceValue` 把这三件套合成一行，效果完全相同�
 
 ## 什么时候用
 
-| 适合 | 不适合 |
-|---|---|
-| 真正全局唯一的资源：配置、日志器、连接池 | 只是为了「到处都能拿到」而图省事 |
-| 创建代价高，希望按需延迟加载 | 需要多份隔离实例（多租户、多数据库） |
-| 实例无状态或只读 | 单元测试需要替换成假对象 |
+<div class="grid" markdown>
+
+!!! success "适合"
+    - 真正全局唯一的资源：配置、日志器、连接池
+    - 创建代价高，希望按需延迟加载
+    - 实例无状态或只读
+
+!!! failure "不适合"
+    - 只是为了「到处都能拿到」而图省事
+    - 需要多份隔离实例（多租户、多数据库）
+    - 单元测试需要替换成假对象
+
+</div>
 
 ## 小结
 
-- 单例 = **受控创建**的全局变量：只创建一次，全局可访问。
-- Go 中用 `sync.Once` / `sync.OnceValue` 实现，天然并发安全，不要手写加锁和双重检查。
-- 单例是全局状态，能用参数传递（依赖注入）时优先传递。
+!!! takeaway "划重点"
+    - 单例 = **受控创建**的全局变量：只创建一次，全局可访问。
+    - Go 中用 `sync.Once` / `sync.OnceValue` 实现，天然并发安全，不要手写加锁和双重检查。
+    - 单例是全局状态，能用参数传递（依赖注入）时优先传递。
 
 ??? note "进阶：Go 惯用写法"
     | 写法 | 何时创建 | 适用 |

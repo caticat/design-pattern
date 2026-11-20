@@ -38,3 +38,4 @@ Scene (design pattern '<Pattern>' metaphor): <三格叙事：问题 → 引入�
 - 网关会忽略 `output_format`，实际返回 PNG（约 1.6MB）；必须用 `scripts/to_webp.py` 转为 webp（约 100–150KB）后再入库，PNG 不入库。
 - 生成后必须**本人查看**：吉祥物特征（青色、黄安全帽、工具腰带）、无文字、隐喻正确；不合格重新生成。
 - 吉祥物已定稿，不再更换或增减配件；README 注明 Go Gopher 原作者 Renée French（CC BY）。
+- 站点 logo / favicon：`docs/assets/images/mascot.webp`（320px）、`favicon.png`（64px），由吉祥物定稿图裁成透明圆角；小结 `takeaway` 框复用 mascot.webp。

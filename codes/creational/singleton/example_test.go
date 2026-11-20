@@ -7,8 +7,8 @@ import (
 )
 
 func Example() {
-	a := singleton.GetConfig()
-	b := singleton.GetConfig()
+	a := singleton.GetInstance()
+	b := singleton.GetInstance()
 
 	fmt.Println("同一个实例:", a == b)
 	fmt.Println("监听地址:", a.Addr)

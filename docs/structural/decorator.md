@@ -86,7 +86,7 @@ Go 里最常见的装饰器是 **HTTP 中间件**：输入一个 `http.Handler`�
 --8<-- "codes/structural/decorator/example_test.go:example-chain"
 ```
 
-[:material-play: 在 Go Playground 运行（含本章两个示例）](https://go.dev/play/p/6phsl1azZ5k){ .md-button target=_blank }
+[:material-play: 在 Go Playground 运行（含本章两个示例）](https://go.dev/play/p/iH-7sza-M-P){ .md-button target=_blank }
 
 ```mermaid
 sequenceDiagram

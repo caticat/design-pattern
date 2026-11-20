@@ -1,27 +1,31 @@
 """生成并校验各章的 Go Playground「在线运行」链接。
 
 每章正文中放一行按钮（ID 由本脚本维护）：
-    [:material-play: 在 Go Playground 运行](https://go.dev/play/p/<ID>){ .md-button target=_blank }
+    [:material-play: 在 Go Playground 运行](https://go.dev/play/p/<ID>){ .md-button .md-button--primary target=_blank }
 
-脚本把该章引用的 Go 包打包成 Playground 的多文件格式（txtar）：
-    - 主文件：example_test.go 改成 package main，并追加 main() 依次调用各 Example
-    - go.mod + 包内所有非测试 .go 文件（保持原目录与模块路径，import 无需改写）
+上传的程序只有一个文件，与正文「使用示例」一致：
+    example_test.go 改成 package main，末尾追加 main() 依次调用各 Example。
+模式包本身由 Playground 通过 Go 模块代理从公共仓库拉取（import 路径不变），
+因此 --update 前须先把代码推送到远程。
 
 用法：
-    python -I scripts/playground.py           # 离线校验链接是否与当前代码一致（自审用）
-    python -I scripts/playground.py --update  # 上传到 go.dev 并改写正文中的链接
+    python -I scripts/playground.py           # 离线校验链接是否与当前示例一致（自审用）
+    python -I scripts/playground.py --update  # 上传、在 Playground 上编译运行验证、改写正文中的链接
 """
 
 import base64
 import hashlib
+import json
 import pathlib
 import re
 import sys
+import time
+import urllib.parse
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-MODULE = "github.com/caticat/design-pattern"
 SHARE_URL = "https://go.dev/_/share"
+COMPILE_URL = "https://go.dev/_/compile"
 # 与 golang.org/x/playground 的 snippet ID 算法一致：sha256(salt + body) 的 base64url 前 11 位
 SALT = b"Go playground salt\n"
 
@@ -31,18 +35,13 @@ EXAMPLE_RE = re.compile(r"^func (Example\w*)\(\) \{", re.M)
 MARKER_RE = re.compile(r"^\s*// --8<-- .*\n", re.M)
 
 
-def read(path: pathlib.Path) -> str:
-    return MARKER_RE.sub("", path.read_text(encoding="utf-8"))
-
-
 def build(pkg: str) -> bytes:
-    """把一个模式包打包成 Playground 可运行的 txtar。"""
-    pkg_dir = ROOT / pkg
-    main = read(pkg_dir / "example_test.go")
-    if '"fmt"' not in main:
+    """把某个模式包的 example_test.go 改写成可直接运行的 main 程序。"""
+    src = (ROOT / pkg / "example_test.go").read_text(encoding="utf-8")
+    src = MARKER_RE.sub("", src)
+    if '"fmt"' not in src:
         sys.exit(f"{pkg}/example_test.go 必须导入 fmt")
-    main = re.sub(r"^package \w+", "package main", main, count=1, flags=re.M)
-    names = EXAMPLE_RE.findall(main)
+    names = EXAMPLE_RE.findall(src)
     if not names:
         sys.exit(f"{pkg}/example_test.go 中没有 Example 函数")
     calls = []
@@ -50,19 +49,9 @@ def build(pkg: str) -> bytes:
         if len(names) > 1:
             calls.append(f'\tfmt.Println("=== {name} ===")')
         calls.append(f"\t{name}()")
-    main = (
-        "// 由 scripts/playground.py 从 example_test.go 生成；期望输出见各函数的 // Output: 注释。\n"
-        + main.rstrip()
-        + "\n\nfunc main() {\n"
-        + "\n".join(calls)
-        + "\n}\n"
-    )
-
-    parts = [main, f"-- go.mod --\nmodule {MODULE}\n\ngo 1.23\n"]
-    for f in sorted(pkg_dir.glob("*.go")):
-        if not f.name.endswith("_test.go"):
-            parts.append(f"-- {pkg}/{f.name} --\n{read(f)}")
-    return "".join(parts).encode("utf-8")
+    src = re.sub(r"^package \w+", "package main", src, count=1, flags=re.M)
+    src = src.rstrip() + "\n\nfunc main() {\n" + "\n".join(calls) + "\n}\n"
+    return src.encode("utf-8")
 
 
 def snippet_id(body: bytes) -> str:
@@ -81,6 +70,20 @@ def share(body: bytes) -> str:
         return resp.read().decode().strip()
 
 
+def run(body: bytes) -> str:
+    """在 Playground 上编译运行；首次拉取模块可能超时，重试几次。"""
+    data = urllib.parse.urlencode({"body": body.decode(), "version": "2", "withVet": "true"}).encode()
+    err = ""
+    for _ in range(4):
+        with urllib.request.urlopen(COMPILE_URL, data, timeout=90) as resp:
+            r = json.load(resp)
+        err = r.get("Errors") or r.get("VetErrors") or ""
+        if not err:
+            return "".join(e["Message"] for e in r.get("Events") or [])
+        time.sleep(5)
+    sys.exit(f"Playground 运行失败（代码是否已推送？）：\n{err}")
+
+
 def main() -> None:
     update = "--update" in sys.argv[1:]
     stale = 0
@@ -92,22 +95,22 @@ def main() -> None:
         pkgs = set(SNIPPET_RE.findall(text))
         if len(pkgs) != 1:
             sys.exit(f"{md}: 需恰好引用一个代码包，实际 {sorted(pkgs)}")
-        pkg = pkgs.pop()
-        body = build(pkg)
+        body = build(pkgs.pop())
         want = f"https://go.dev/play/p/{snippet_id(body)}"
         rel = md.relative_to(ROOT).as_posix()
-        if all(link == want for link in links):
-            print(f"ok      {rel}")
-            continue
         if not update:
-            print(f"STALE   {rel}  (运行 --update 刷新)")
-            stale += 1
+            if all(link == want for link in links):
+                print(f"ok      {rel}")
+            else:
+                print(f"STALE   {rel}  (运行 --update 刷新)")
+                stale += 1
             continue
+        out = run(body)
         got = f"https://go.dev/play/p/{share(body)}"
         if got != want:
             sys.exit(f"{rel}: 服务端 ID {got} 与本地算法 {want} 不一致")
         md.write_text(LINK_RE.sub(want, text), encoding="utf-8", newline="\n")
-        print(f"updated {rel}  {want}")
+        print(f"updated {rel}  {want}\n{out}")
     sys.exit(1 if stale else 0)
 
 
