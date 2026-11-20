@@ -43,6 +43,8 @@
 
 <使用示例，来自 example_test.go，附输出>
 
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/TODO){ .md-button target=_blank }
+
 ## 什么时候用
 
 | 适合 | 不适合 |
@@ -66,6 +68,7 @@
 - 正文代码**全部**通过 snippets 引用 `codes/` 下的文件，不手写代码块（保证代码可编译、可测试）。
 - 引用整文件：`--8<-- "codes/creational/singleton/singleton.go"`
 - 引用片段：源码中用 `// --8<-- [start:name]` / `// --8<-- [end:name]` 标记，正文写 `--8<-- "path.go:name"`。
+- 在线运行：每章一个 Playground 按钮（模板见上），一章只引用一个代码包。代码改动后运行 `python -I scripts/playground.py --update` 刷新链接；不带参数为离线校验。
 
 ## 自检清单（提交人工审查前逐条确认）
 
@@ -74,5 +77,5 @@
 - [ ] 类图角色与代码中的类型名一致
 - [ ] 标准库实例真实存在（已核对包名/类型名）
 - [ ] 字数在范围内，无填充语、无重复
-- [ ] `go test ./...`、`go vet ./...`、`mkdocs build --strict` 全部通过
+- [ ] `go test ./...`、`go vet ./...`、`mkdocs build --strict`、`python -I scripts/playground.py` 全部通过
 - [ ] 本地页面渲染正常（Mermaid、折叠块、图片）

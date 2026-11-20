@@ -84,6 +84,8 @@ classDiagram
 --8<-- "codes/behavioral/strategy/example_test.go"
 ```
 
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/14lSP6bIAD1){ .md-button target=_blank }
+
 新增一种优惠，只需新写一个类型（或一个函数），`Checkout` 一行不改。
 
 ## 什么时候用

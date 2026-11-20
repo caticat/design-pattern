@@ -37,7 +37,7 @@ mkdocs.yml
 ## 工作流程
 
 1. 按规范生成：正文 → 代码与测试 → Mermaid → 插图
-2. **AI 先自审**：跑 `go vet ./...`、`go test ./...`、`mkdocs build --strict`，对照 `spec/writing.md` 自检清单逐条确认，查看插图
+2. **AI 先自审**：跑 `go vet ./...`、`go test ./...`、`mkdocs build --strict`、`scripts/playground.py`（代码有改动先 `--update`），对照 `spec/writing.md` 自检清单逐条确认，查看插图
 3. 自审通过后再交人工审查；按意见修改
 
 ## Git

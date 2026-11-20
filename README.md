@@ -16,6 +16,8 @@ python -m venv .venv
 
 ## 运行代码
 
+每章示例下方有「在 Go Playground 运行」按钮，可在浏览器中直接运行和修改。本地运行：
+
 ```bash
 go test ./...                                    # 需要 Go 1.23+
 go test -v -run Example ./codes/behavioral/strategy
