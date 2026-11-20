@@ -21,7 +21,7 @@
 |---|---|
 | `spec/writing.md` | 写作规范、章节模板、自检清单 |
 | `spec/code.md` | 代码目录与约束 |
-| `spec/image.md` | 生图模型、Prompt 模板、Mermaid 分工 |
+| `spec/image.md` | 生图模型、角色设定、Prompt 模板、Mermaid 分工 |
 
 ## 目录结构
 
