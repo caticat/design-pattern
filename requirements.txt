@@ -1,0 +1,2 @@
+mkdocs-material>=9.5
+pillow>=10.0  # 仅用于 scripts/to_webp.py 转换插图

@@ -1,0 +1,73 @@
+site_name: Go 设计模式图解
+site_description: 用 Go 深入浅出讲解 23 个经典设计模式，配插图、结构图与可运行代码
+site_url: https://caticat.github.io/design-pattern/
+repo_url: https://github.com/caticat/design-pattern
+repo_name: caticat/design-pattern
+edit_uri: edit/master/docs/
+docs_dir: docs
+
+theme:
+  name: material
+  language: zh
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: 切换到暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: 切换到亮色模式
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - content.code.copy
+    - search.highlight
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - 首页: index.md
+  - 创建型模式:
+      - creational/index.md
+      - 单例模式: creational/singleton.md
+  - 结构型模式:
+      - structural/index.md
+      - 装饰器模式: structural/decorator.md
+  - 行为型模式:
+      - behavioral/index.md
+      - 策略模式: behavioral/strategy.md

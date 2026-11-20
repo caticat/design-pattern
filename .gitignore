@@ -1,0 +1,21 @@
+# Python / MkDocs
+.venv/
+__pycache__/
+site/
+
+# Go
+*.exe
+*.test
+*.out
+coverage.*
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 敏感信息兜底（本项目不应出现）
+.env
+*.pem
+*.key

@@ -1,0 +1,32 @@
+/* Go 品牌青作为主色 */
+:root {
+  --md-primary-fg-color: #00add8;
+  --md-primary-fg-color--light: #5dc9e2;
+  --md-primary-fg-color--dark: #007d9c;
+  --md-accent-fg-color: #f2735a;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #007d9c;
+  --md-accent-fg-color: #f2735a;
+}
+
+/* 章首插图：圆角、居中 */
+.md-typeset img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+/* 图注 */
+.md-typeset p.caption {
+  text-align: center;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.75rem;
+  margin-top: 0.4rem;
+}
+
+/* Mermaid 图居中 */
+.md-typeset .mermaid {
+  text-align: center;
+}
