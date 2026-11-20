@@ -1,5 +1,6 @@
 /* ============================================================
    配色：Go 品牌青 + 安全帽黄 + 珊瑚 + 奶油（与插图同一套色板）
+   风格参照 hello-algo：留白多、线条轻、框不叠框
    ============================================================ */
 :root {
   --dp-teal: #00add8;
@@ -7,8 +8,8 @@
   --dp-yellow: #fdc93b;
   --dp-coral: #f2735a;
   --dp-cream: #fff8ec;
-  --dp-soft: rgba(0, 173, 216, 0.07);
-  --dp-line: rgba(0, 125, 156, 0.18);
+  --dp-soft: rgba(0, 173, 216, 0.06);
+  --dp-line: rgba(0, 125, 156, 0.16);
 
   --md-primary-fg-color: var(--dp-teal);
   --md-primary-fg-color--light: #5dc9e2;
@@ -23,8 +24,8 @@
 [data-md-color-scheme="slate"] {
   --md-primary-fg-color: #0b6f88;
   --dp-cream: rgba(253, 201, 59, 0.06);
-  --dp-soft: rgba(0, 173, 216, 0.1);
-  --dp-line: rgba(93, 201, 226, 0.25);
+  --dp-soft: rgba(0, 173, 216, 0.08);
+  --dp-line: rgba(93, 201, 226, 0.22);
 }
 
 /* ---------- 正文排版：中文行距放宽 ---------- */
@@ -38,38 +39,30 @@
   border-radius: 4px;
 }
 
-/* 一级标题：底部青→黄渐变短条 */
 .md-typeset h1 {
   font-weight: 700;
   color: var(--md-default-fg-color);
-  margin-bottom: 0.6em;
+  margin-bottom: 0.8em;
 }
 
+/* 一级标题下的青→黄短条，全站唯一的装饰线 */
 .md-typeset h1::after {
   content: "";
   display: block;
-  width: 3.2rem;
-  height: 0.28rem;
+  width: 3rem;
+  height: 0.22rem;
   margin-top: 0.5rem;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--dp-teal), var(--dp-yellow));
 }
 
-/* 二级标题：左侧青色竖条 */
 .md-typeset h2 {
   font-weight: 700;
-  padding-left: 0.7rem;
-  border-left: 0.25rem solid var(--dp-teal);
-  line-height: 1.4;
+  margin-top: 2em;
 }
 
 .md-typeset h3 {
-  font-weight: 700;
-  color: var(--dp-teal-dark);
-}
-
-[data-md-color-scheme="slate"] .md-typeset h3 {
-  color: #5dc9e2;
+  font-weight: 600;
 }
 
 /* 荧光笔高亮（==文字==），每章只给最关键的一两句话用 */
@@ -79,7 +72,7 @@
   padding: 0 0.1em;
 }
 
-/* ---------- 章首信息条 ---------- */
+/* ---------- 章首页：信息条 ---------- */
 .md-typeset .pattern-meta {
   display: flex;
   flex-wrap: wrap;
@@ -96,56 +89,73 @@
   border-radius: 999px;
   background: var(--dp-soft);
   color: var(--dp-teal-dark);
-  border: 1px solid var(--dp-line);
 }
 
 [data-md-color-scheme="slate"] .md-typeset .pattern-meta span:not(.twemoji) {
   color: #8fdcef;
 }
 
-/* ---------- 「一句话」：奶油底大字卡片 ---------- */
-.md-typeset .admonition.abstract {
-  border: none;
-  border-left: 0.3rem solid var(--dp-yellow);
-  border-radius: 10px;
-  background: var(--dp-cream);
-  box-shadow: none;
-  font-size: 0.85rem;
-}
-
-.md-typeset .abstract > .admonition-title {
-  background: transparent;
-  color: #b8860b;
-  font-weight: 700;
-}
-
-.md-typeset .abstract > .admonition-title::before {
-  background-color: var(--dp-yellow);
-}
-
-/* ---------- 插图 ---------- */
+/* ---------- 章首页：封面大图 ---------- */
 .md-typeset img {
   display: block;
   margin: 0 auto;
-  border-radius: 16px;
 }
 
-.md-typeset p > img[src*="/images/"]:not([src*="mascot"]) {
-  box-shadow: 0 6px 24px rgba(0, 60, 80, 0.12);
+.md-typeset img.cover {
+  width: 100%;
+  border-radius: 12px;
 }
 
+[data-md-color-scheme="slate"] .md-typeset img.cover {
+  filter: brightness(0.9);
+}
+
+/* ---------- 章首页：题记（!!! abstract ""） ---------- */
+.md-typeset .admonition.abstract {
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--md-default-fg-color--light);
+  margin: 1.6em 0;
+}
+
+.md-typeset .admonition.abstract strong {
+  color: var(--md-default-fg-color);
+}
+
+/* ---------- 图注：「图 N-k」由 hooks/captions.py 自动编号 ---------- */
 .md-typeset p.caption {
   text-align: center;
   color: var(--md-default-fg-color--light);
   font-size: 0.7rem;
-  margin: 0.7rem auto 0;
+  margin: 0.6rem auto 1.6rem;
   max-width: 34rem;
 }
 
-/* ---------- 表格：圆角、浅青表头、无粗线 ---------- */
+.md-typeset p.caption .fig-no {
+  color: var(--dp-teal-dark);
+  font-weight: 700;
+  margin-right: 0.6em;
+}
+
+[data-md-color-scheme="slate"] .md-typeset p.caption .fig-no {
+  color: #5dc9e2;
+}
+
+/* ---------- Mermaid：浅底无框 ---------- */
+.md-typeset .mermaid {
+  text-align: center;
+  padding: 0.8rem;
+  border-radius: 12px;
+  background: var(--dp-soft);
+  margin-bottom: 0;
+}
+
+/* ---------- 表格：细线、浅青表头 ---------- */
 .md-typeset table:not([class]) {
   border: 1px solid var(--dp-line);
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   font-size: 0.75rem;
   box-shadow: none;
@@ -165,9 +175,15 @@
   border-top: 1px solid var(--dp-line);
 }
 
+/* 框里不再套框：提示框内的表格去掉外边框 */
+.md-typeset :is(.admonition, details) table:not([class]) {
+  border: none;
+  border-radius: 0;
+}
+
 /* ---------- 代码块 ---------- */
 .md-typeset pre > code {
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 /* ---------- 在线运行按钮：实心胶囊 ---------- */
@@ -183,29 +199,44 @@
   border-color: var(--dp-coral);
 }
 
-/* ---------- 提示框：字号接近正文，便于阅读 ---------- */
+/* ---------- 提示框：淡色细边、极浅底色、无阴影 ---------- */
 .md-typeset .admonition,
 .md-typeset details {
+  --dp-c: #448aff;
   font-size: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--dp-c) 28%, transparent);
+  border-radius: 8px;
+  background-color: color-mix(in srgb, var(--dp-c) 3%, var(--md-default-bg-color));
+  box-shadow: none;
 }
+
+.md-typeset :is(.admonition, details):focus-within {
+  box-shadow: none;
+}
+
+.md-typeset :is(.admonition, details) > :is(.admonition-title, summary) {
+  background-color: transparent;
+  font-weight: 700;
+}
+
+.md-typeset :is(.admonition, details).tip { --dp-c: #00bfa5; }
+.md-typeset :is(.admonition, details).success { --dp-c: #00c853; }
+.md-typeset :is(.admonition, details).warning { --dp-c: #ff9100; }
+.md-typeset :is(.admonition, details).failure { --dp-c: #ff5252; }
+.md-typeset :is(.admonition, details).bug { --dp-c: #f50057; }
 
 /* ---------- 适合 / 不适合：双栏卡片 ---------- */
 .md-typeset .grid > .admonition {
   margin: 0;
-  border-radius: 10px;
 }
 
 /* ---------- 小结：吉祥物「划重点」 ---------- */
 .md-typeset .admonition.takeaway {
-  border: 1px solid var(--dp-line);
-  border-radius: 12px;
+  --dp-c: var(--dp-teal);
   background: var(--dp-soft);
-  box-shadow: none;
 }
 
 .md-typeset .takeaway > .admonition-title {
-  background: transparent;
-  font-weight: 700;
   font-size: 0.8rem;
   padding-left: 3.2rem;
   min-height: 2.6rem;
@@ -227,16 +258,7 @@
   margin-top: 0;
 }
 
-/* ---------- 进阶折叠块：更轻的边框 ---------- */
-.md-typeset details {
-  border-radius: 10px;
-  box-shadow: none;
-}
-
-/* ---------- Mermaid ---------- */
-.md-typeset .mermaid {
-  text-align: center;
-  padding: 0.8rem;
-  border-radius: 12px;
-  background: var(--dp-soft);
+/* ---------- Q & A：问题加粗成行，答案缩进 ---------- */
+.md-typeset p:has(> strong:first-child) + p {
+  margin-top: 0.4em;
 }

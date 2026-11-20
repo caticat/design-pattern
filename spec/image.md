@@ -4,7 +4,7 @@
 
 | 图类型 | 生成方式 | 位置 |
 |---|---|---|
-| 类比插图（每章 1 张，章首） | 生图模型 | `docs/assets/images/<模式>.webp` |
+| 封面大图（每章 1 张，章首页 `{ .cover }`） | 生图模型 | `docs/assets/images/<模式>.webp` |
 | 类图 / 时序图 / 前后对比 | Mermaid，写在 Markdown 中 | 正文 |
 
 ## 生图模型（强制）
@@ -48,13 +48,13 @@ Mascot (keep exactly this design in every appearance): a cute chubby gopher-like
 接着写场景（场景里只写道具和动作，**不要再描述角色外观**，避免与前缀冲突）：
 
 ```text
-Scene (design pattern '<Pattern>' metaphor), three panels left to right connected by coral arrows: 1) <问题>; 2) <引入模式>; 3) <解决>. Composition with generous whitespace, wide framing, suitable as a book chapter header.
+Scene (design pattern '<Pattern>' metaphor): ONE single unified scene, no panels, no borders, no frames, no dividing lines. <场景：一个画面里同时看出「模式的核心关系」>. The mascot appears only once. Composition with generous whitespace, wide framing, suitable as a book chapter cover.
 ```
 
 ## 规则
 
 - 图内**不放文字/数字**，说明写在图注；钟面、路牌等道具注明 no numerals / blank。
-- 构图优先三格叙事（问题 → 模式 → 解决）。
+- 构图为**单一场景**（参照 hello-algo 章首图）：不分格、不加边框，吉祥物只出现一次；「问题 → 解决」的过程交给正文 Mermaid 图。样例：单例 = 全城一座钟楼，各家窗户以虚线连向同一座钟。
 - 网关会忽略 `output_format`，实际返回 PNG（约 1.5MB）；必须用 `scripts/to_webp.py` 转为 webp（约 100–150KB）后再入库，PNG 不入库。
 - 生成后必须**本人查看**，不合格重新生成：
     - 与设定图对照：无毛发/毛刺/胡须、五官和配件齐全、描边粗细一致

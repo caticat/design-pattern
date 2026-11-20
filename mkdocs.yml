@@ -66,14 +66,23 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
 
+hooks:
+  - hooks/captions.py    # 图注自动编号「图 N-k」
+
+# 篇 = 模式分类；章 = 一个模式（章首页 + 若干节）；节标题写在各页 H1 中
 nav:
   - 首页: index.md
   - 创建型模式:
       - creational/index.md
-      - 单例模式: creational/singleton.md
+      - 第 1 章 &nbsp; 单例模式:
+          - creational/singleton/index.md
+          - creational/singleton/problem.md
+          - creational/singleton/implementation.md
+          - creational/singleton/tradeoffs.md
+          - creational/singleton/summary.md
   - 结构型模式:
       - structural/index.md
-      - 装饰器模式: structural/decorator.md
+      - 第 7 章 &nbsp; 装饰器模式: structural/decorator.md
   - 行为型模式:
       - behavioral/index.md
-      - 策略模式: behavioral/strategy.md
+      - 第 13 章 &nbsp; 策略模式: behavioral/strategy.md
