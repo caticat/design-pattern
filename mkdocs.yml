@@ -86,3 +86,5 @@ nav:
   - 行为型模式:
       - behavioral/index.md
       - 第 13 章 &nbsp; 策略模式: behavioral/strategy.md
+  - 附录:
+      - appendix/concurrency.md

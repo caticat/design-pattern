@@ -30,6 +30,7 @@
 docs/                 # 正文（MkDocs）
   assets/images/      # 生成的插图
   creational/ structural/ behavioral/
+  appendix/           # 附录：跨章复用的 Go 基础（如并发）
 codes/                # Go 代码，正文通过 snippets 引用
 spec/                 # 项目规范
 mkdocs.yml

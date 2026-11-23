@@ -5,7 +5,16 @@
 | 图类型 | 生成方式 | 位置 |
 |---|---|---|
 | 封面大图（每章 1 张，章首页 `{ .cover }`） | 生图模型 | `docs/assets/images/<模式>.webp` |
-| 类图 / 时序图 / 前后对比 | Mermaid，写在 Markdown 中 | 正文 |
+| 过程插图（每章 2–3 张，节内 `{ .illus }` + 图注） | 生图模型 | `docs/assets/images/<模式>-<用途>.webp` |
+| 类图 / 时序图 / 流程图 | Mermaid，写在 Markdown 中 | 正文 |
+
+过程插图让读者「看懂模式解决了什么」，与 Mermaid 互补（插图讲直觉，Mermaid 讲精确结构）。样板章单例的配置：
+
+| 节 | 插图 | 形式 |
+|---|---|---|
+| N.1 问题与思路（必有） | `singleton-problem`：多个钟各走各的 → 收起只留一个 → 都看同一个 | 三步条 |
+| N.2 Go 实现（推荐） | `singleton-once`：同时来取 → 排队等创建 → 都拿到同一个 | 三步条 |
+| N.3 专题（推荐） | `singleton-compare`：开放架子被换掉 vs 锁在柜里只开一个窗口 | 左右对比 |
 
 ## 生图模型（强制）
 
@@ -47,14 +56,32 @@ Mascot (keep exactly this design in every appearance): a cute chubby gopher-like
 
 接着写场景（场景里只写道具和动作，**不要再描述角色外观**，避免与前缀冲突）：
 
+封面大图：
+
 ```text
 Scene (design pattern '<Pattern>' metaphor): ONE single unified scene, no panels, no borders, no frames, no dividing lines. <场景：一个画面里同时看出「模式的核心关系」>. The mascot appears only once. Composition with generous whitespace, wide framing, suitable as a book chapter cover.
 ```
 
+过程插图 · 三步条（问题 → 处理 → 结果）：
+
+```text
+Scene (<一句话说明隐喻>): a horizontal three-step strip on one wide light cream canvas, three scenes left to right separated only by two bold coral arrows. No panel borders, no frames, no boxes around the scenes. The mascot appears exactly once in each step. Step 1: <问题>. Step 2: <模式怎么处理>. Step 3: <结果，吉祥物开心>. Generous whitespace, balanced spacing, book illustration style.
+```
+
+过程插图 · 左右对比（反例 vs 正解）：
+
+```text
+Scene (comparison: <A> versus <B>): two scenes side by side on one wide light cream canvas, separated only by generous empty space in the middle. No panel borders, no frames, no boxes, no dividing lines. The mascot appears exactly once in each scene. Left scene: <反例，吉祥物着急>. Right scene: <正解，吉祥物从容>. Generous whitespace, balanced spacing, book illustration style.
+```
+
+需要「多个调用方」时，用配角 `three small identical round white delivery robots with a short antenna and simple dot eyes (simple shapes, NOT gophers)`，不要画多个吉祥物。
+
 ## 规则
 
 - 图内**不放文字/数字**，说明写在图注；钟面、路牌等道具注明 no numerals / blank。
-- 构图为**单一场景**（参照 hello-algo 章首图）：不分格、不加边框，吉祥物只出现一次；「问题 → 解决」的过程交给正文 Mermaid 图。样例：单例 = 全城一座钟楼，各家窗户以虚线连向同一座钟。
+- 封面为**单一场景**（参照 hello-algo 章首图）：不分格、不加边框，吉祥物只出现一次。样例：单例 = 全城一座钟楼，各家窗户以虚线连向同一座钟。
+- 「问题 → 解决」的过程交给**过程插图**：步骤之间只用珊瑚色箭头或留白分隔，不画格子边框；每步吉祥物各出现一次。
+- 同一章的封面与过程插图沿用**同一隐喻道具**（单例全章都是「钟」），读者不用重新理解。
 - 网关会忽略 `output_format`，实际返回 PNG（约 1.5MB）；必须用 `scripts/to_webp.py` 转为 webp（约 100–150KB）后再入库，PNG 不入库。
 - 生成后必须**本人查看**，不合格重新生成：
     - 与设定图对照：无毛发/毛刺/胡须、五官和配件齐全、描边粗细一致

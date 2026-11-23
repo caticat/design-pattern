@@ -101,12 +101,18 @@
   margin: 0 auto;
 }
 
-.md-typeset img.cover {
+.md-typeset :is(img.cover, img.illus) {
   width: 100%;
   border-radius: 12px;
 }
 
-[data-md-color-scheme="slate"] .md-typeset img.cover {
+/* 节内过程插图：比封面稍窄，配图注 */
+.md-typeset img.illus {
+  max-width: 40rem;
+  margin-top: 1.2rem;
+}
+
+[data-md-color-scheme="slate"] .md-typeset :is(img.cover, img.illus) {
   filter: brightness(0.9);
 }
 
