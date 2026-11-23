@@ -32,6 +32,6 @@
 --8<-- "codes/creational/factorymethod/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/TODO){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/RZq9SG1yBAR){ .md-button .md-button--primary target=_blank }
 
 Playground 中还包含 [2.3](registry.md) 的注册表示例，可以一起运行。

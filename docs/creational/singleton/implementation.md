@@ -35,7 +35,7 @@ Go 标准库的 `sync.Once` 正好提供「只执行一次」的保证。下面�
 --8<-- "codes/creational/singleton/example_test.go"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/cZeYy1z7jZO){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/M5i6-fz2zxT){ .md-button .md-button--primary target=_blank }
 
 ## 按创建时机选写法
 

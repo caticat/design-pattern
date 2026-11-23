@@ -3,10 +3,11 @@
 每章正文中放一行按钮（ID 由本脚本维护）：
     [:material-play: 在 Go Playground 运行](https://go.dev/play/p/<ID>){ .md-button .md-button--primary target=_blank }
 
-上传的程序只有一个文件，与正文「使用示例」一致：
-    example_test.go 改成 package main，末尾追加 main() 依次调用各 Example。
+上传的程序与正文「使用示例」一致：
+    example_test.go 改成 package main，末尾追加 main() 依次调用各 Example；
+    另附 go.mod，把本仓库固定到「该包最后一次提交」的伪版本。
 模式包本身由 Playground 通过 Go 模块代理从公共仓库拉取（import 路径不变），
-因此 --update 前须先把代码推送到远程。
+因此 --update 前须先提交并推送代码；只有该包的代码有新提交时，链接才会变。
 
 用法：
     python -I scripts/playground.py           # 离线校验链接是否与当前示例一致（自审用）
@@ -16,8 +17,10 @@
 import base64
 import hashlib
 import json
+import os
 import pathlib
 import re
+import subprocess
 import sys
 import time
 import urllib.parse
@@ -33,6 +36,9 @@ LINK_RE = re.compile(r"https://go\.dev/play/p/[\w-]+")
 SNIPPET_RE = re.compile(r'--8<-- "(codes/[^/"]+/[^/"]+)/')
 EXAMPLE_RE = re.compile(r"^func (Example\w*)\(\) \{", re.M)
 MARKER_RE = re.compile(r"^\s*// --8<-- .*\n", re.M)
+MODULE = "github.com/caticat/design-pattern"
+# Playground 支持 txtar 多文件；固定版本可绕过模块代理对 @latest 的缓存，链接也不随后续提交失效
+GO_MOD = "-- go.mod --\nmodule play\n\ngo 1.23\n\nrequire {module} {version}\n"
 
 
 def build(pkg: str) -> bytes:
@@ -51,7 +57,22 @@ def build(pkg: str) -> bytes:
         calls.append(f"\t{name}()")
     src = re.sub(r"^package \w+", "package main", src, count=1, flags=re.M)
     src = src.rstrip() + "\n\nfunc main() {\n" + "\n".join(calls) + "\n}\n"
+    src += GO_MOD.format(module=MODULE, version=pseudo_version(pkg))
     return src.encode("utf-8")
+
+
+def pseudo_version(pkg: str) -> str:
+    """该包最后一次提交对应的 Go 伪版本，如 v0.0.0-20261123044818-0286edd63667。"""
+    git = dict(cwd=ROOT, env={**os.environ, "TZ": "UTC"}, capture_output=True, text=True, check=True)
+    if subprocess.run(["git", "status", "--porcelain", "--", pkg], **git).stdout.strip():
+        sys.exit(f"{pkg} 有未提交的改动：先提交并推送，再生成 Playground 链接")
+    out = subprocess.run(
+        ["git", "log", "-1", "--date=format-local:%Y%m%d%H%M%S", "--format=%cd-%H", "--", pkg], **git
+    ).stdout.strip()
+    if not out:
+        sys.exit(f"{pkg} 尚未提交，无法生成 Playground 链接")
+    stamp, commit = out.split("-")
+    return f"v0.0.0-{stamp}-{commit[:12]}"
 
 
 def snippet_id(body: bytes) -> str:
@@ -81,7 +102,7 @@ def run(body: bytes) -> str | None:
         if not err:
             return "".join(e["Message"] for e in r.get("Events") or [])
         time.sleep(5)
-    print(f"Playground 运行失败（代码是否已推送？Playground 的 @latest 缓存可能未刷新，稍后重试）：\n{err}")
+    print(f"Playground 运行失败（代码是否已提交并推送？）：\n{err}")
     return None
 
 

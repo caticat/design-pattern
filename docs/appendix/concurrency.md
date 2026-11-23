@@ -26,7 +26,7 @@ Go 程序天然是并发的。例如 `net/http` 的服务器为每个连接启�
 --8<-- "codes/appendix/concurrency/example_test.go:mutex"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/2KWR9DB6WdR){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/osiyjdH982n){ .md-button .md-button--primary target=_blank }
 
 运行可以看到：`Example_race` 每次输出不同，`Example_mutex` 总是 1000。
 

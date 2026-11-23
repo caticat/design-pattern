@@ -24,7 +24,7 @@
 --8<-- "codes/structural/decorator/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/iH-7sza-M-P){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/oO9masB9IsL){ .md-button .md-button--primary target=_blank }
 
 Playground 中还包含 [7.3 HTTP 中间件](middleware.md) 的示例，可以一起运行。
 
