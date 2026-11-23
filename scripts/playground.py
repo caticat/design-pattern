@@ -70,8 +70,8 @@ def share(body: bytes) -> str:
         return resp.read().decode().strip()
 
 
-def run(body: bytes) -> str:
-    """在 Playground 上编译运行；首次拉取模块可能超时，重试几次。"""
+def run(body: bytes) -> str | None:
+    """在 Playground 上编译运行；首次拉取模块可能超时，重试几次。失败返回 None。"""
     data = urllib.parse.urlencode({"body": body.decode(), "version": "2", "withVet": "true"}).encode()
     err = ""
     for _ in range(4):
@@ -81,12 +81,13 @@ def run(body: bytes) -> str:
         if not err:
             return "".join(e["Message"] for e in r.get("Events") or [])
         time.sleep(5)
-    sys.exit(f"Playground 运行失败（代码是否已推送？）：\n{err}")
+    print(f"Playground 运行失败（代码是否已推送？Playground 的 @latest 缓存可能未刷新，稍后重试）：\n{err}")
+    return None
 
 
 def main() -> None:
     update = "--update" in sys.argv[1:]
-    stale = 0
+    stale = failed = 0
     for md in sorted((ROOT / "docs").rglob("*.md")):
         text = md.read_text(encoding="utf-8")
         links = LINK_RE.findall(text)
@@ -106,12 +107,16 @@ def main() -> None:
                 stale += 1
             continue
         out = run(body)
+        if out is None:
+            print(f"FAILED  {rel}")
+            failed += 1
+            continue
         got = f"https://go.dev/play/p/{share(body)}"
         if got != want:
             sys.exit(f"{rel}: 服务端 ID {got} 与本地算法 {want} 不一致")
         md.write_text(LINK_RE.sub(want, text), encoding="utf-8", newline="\n")
         print(f"updated {rel}  {want}\n{out}")
-    sys.exit(1 if stale else 0)
+    sys.exit(1 if stale or failed else 0)
 
 
 if __name__ == "__main__":

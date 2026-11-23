@@ -98,6 +98,12 @@ nav:
           - creational/builder/implementation.md
           - creational/builder/options.md
           - creational/builder/summary.md
+      - 第 5 章 &nbsp; 原型模式:
+          - creational/prototype/index.md
+          - creational/prototype/problem.md
+          - creational/prototype/implementation.md
+          - creational/prototype/copy.md
+          - creational/prototype/summary.md
   - 结构型模式:
       - structural/index.md
       - 第 6 章 &nbsp; 适配器模式:

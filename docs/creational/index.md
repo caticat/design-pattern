@@ -8,4 +8,4 @@
 | [工厂方法](factory-method/index.md) | 使用方不想关心具体创建哪个类型 |
 | [抽象工厂](abstract-factory/index.md) | 需要成套创建彼此配套的对象 |
 | [建造者](builder/index.md) | 构造参数多、步骤复杂 |
-| 原型 | 从零创建代价高，复制更便宜 |
+| [原型](prototype/index.md) | 从零创建代价高，复制更便宜 |
