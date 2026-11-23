@@ -57,7 +57,7 @@
 |---|---|---|---|
 | 13 | [策略 Strategy](behavioral/strategy/index.md) | 封装可互换的算法，运行时切换 | :material-check: |
 | 14 | [观察者 Observer](behavioral/observer/index.md) | 状态变化时自动通知订阅者 | :material-check: |
-| 15 | 模板方法 Template Method | 固定流程骨架，步骤可替换 | :material-clock-outline: |
+| 15 | [模板方法 Template Method](behavioral/template-method/index.md) | 固定流程骨架，步骤可替换 | :material-check: |
 | 16 | 迭代器 Iterator | 不暴露内部结构地遍历集合 | :material-clock-outline: |
 | 17 | 责任链 Chain of Responsibility | 请求沿链传递，直到有人处理 | :material-clock-outline: |
 | 18 | 命令 Command | 把请求封装成对象 | :material-clock-outline: |

@@ -162,5 +162,11 @@ nav:
           - behavioral/observer/implementation.md
           - behavioral/observer/stdlib.md
           - behavioral/observer/summary.md
+      - 第 15 章 &nbsp; 模板方法模式:
+          - behavioral/template-method/index.md
+          - behavioral/template-method/problem.md
+          - behavioral/template-method/implementation.md
+          - behavioral/template-method/stdlib.md
+          - behavioral/template-method/summary.md
   - 附录:
       - appendix/concurrency.md
