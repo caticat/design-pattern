@@ -86,6 +86,12 @@ nav:
           - creational/factory-method/implementation.md
           - creational/factory-method/registry.md
           - creational/factory-method/summary.md
+      - 第 3 章 &nbsp; 抽象工厂模式:
+          - creational/abstract-factory/index.md
+          - creational/abstract-factory/problem.md
+          - creational/abstract-factory/implementation.md
+          - creational/abstract-factory/extend.md
+          - creational/abstract-factory/summary.md
   - 结构型模式:
       - structural/index.md
       - 第 6 章 &nbsp; 适配器模式:

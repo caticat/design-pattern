@@ -35,7 +35,7 @@
 |---|---|---|---|
 | 1 | [单例 Singleton](creational/singleton/index.md) | 全局只有一个实例 | :material-check: |
 | 2 | [工厂方法 Factory Method](creational/factory-method/index.md) | 让子类型决定创建什么 | :material-check: |
-| 3 | 抽象工厂 Abstract Factory | 成套地创建相关对象 | :material-clock-outline: |
+| 3 | [抽象工厂 Abstract Factory](creational/abstract-factory/index.md) | 成套地创建相关对象 | :material-check: |
 | 4 | 建造者 Builder | 一步步组装复杂对象 | :material-clock-outline: |
 | 5 | 原型 Prototype | 复制已有对象来创建新对象 | :material-clock-outline: |
 
