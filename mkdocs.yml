@@ -168,5 +168,11 @@ nav:
           - behavioral/template-method/implementation.md
           - behavioral/template-method/stdlib.md
           - behavioral/template-method/summary.md
+      - 第 16 章 &nbsp; 迭代器模式:
+          - behavioral/iterator/index.md
+          - behavioral/iterator/problem.md
+          - behavioral/iterator/implementation.md
+          - behavioral/iterator/stdlib.md
+          - behavioral/iterator/summary.md
   - 附录:
       - appendix/concurrency.md
