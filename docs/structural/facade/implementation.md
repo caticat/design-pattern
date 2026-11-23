@@ -34,4 +34,4 @@
 --8<-- "codes/structural/facade/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/TODO){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/vqY_wIU6oL4){ .md-button .md-button--primary target=_blank }
