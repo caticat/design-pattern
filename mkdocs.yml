@@ -156,5 +156,11 @@ nav:
           - behavioral/strategy/implementation.md
           - behavioral/strategy/functions.md
           - behavioral/strategy/summary.md
+      - 第 14 章 &nbsp; 观察者模式:
+          - behavioral/observer/index.md
+          - behavioral/observer/problem.md
+          - behavioral/observer/implementation.md
+          - behavioral/observer/stdlib.md
+          - behavioral/observer/summary.md
   - 附录:
       - appendix/concurrency.md
