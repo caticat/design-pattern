@@ -174,5 +174,11 @@ nav:
           - behavioral/iterator/implementation.md
           - behavioral/iterator/stdlib.md
           - behavioral/iterator/summary.md
+      - 第 17 章 &nbsp; 责任链模式:
+          - behavioral/chain-of-responsibility/index.md
+          - behavioral/chain-of-responsibility/problem.md
+          - behavioral/chain-of-responsibility/implementation.md
+          - behavioral/chain-of-responsibility/stdlib.md
+          - behavioral/chain-of-responsibility/summary.md
   - 附录:
       - appendix/concurrency.md

@@ -59,7 +59,7 @@
 | 14 | [观察者 Observer](behavioral/observer/index.md) | 状态变化时自动通知订阅者 | :material-check: |
 | 15 | [模板方法 Template Method](behavioral/template-method/index.md) | 固定流程骨架，步骤可替换 | :material-check: |
 | 16 | [迭代器 Iterator](behavioral/iterator/index.md) | 不暴露内部结构地遍历集合 | :material-check: |
-| 17 | 责任链 Chain of Responsibility | 请求沿链传递，直到有人处理 | :material-clock-outline: |
+| 17 | [责任链 Chain of Responsibility](behavioral/chain-of-responsibility/index.md) | 请求沿链传递，直到有人处理 | :material-check: |
 | 18 | 命令 Command | 把请求封装成对象 | :material-clock-outline: |
 | 19 | 状态 State | 状态改变时，行为跟着改变 | :material-clock-outline: |
 | 20 | 备忘录 Memento | 保存并恢复对象状态 | :material-clock-outline: |
