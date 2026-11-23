@@ -44,7 +44,7 @@
 | 章 | 模式 | 一句话 | 状态 |
 |---|---|---|---|
 | 6 | 适配器 Adapter | 转换接口，让不兼容的类型一起工作 | :material-clock-outline: |
-| 7 | [装饰器 Decorator](structural/decorator.md) | 层层包装，动态叠加功能 | :material-check: |
+| 7 | [装饰器 Decorator](structural/decorator/index.md) | 层层包装，动态叠加功能 | :material-check: |
 | 8 | 代理 Proxy | 用替身控制对真实对象的访问 | :material-clock-outline: |
 | 9 | 外观 Facade | 给复杂子系统一个简单入口 | :material-clock-outline: |
 | 10 | 组合 Composite | 把对象组成树，统一对待单个和整体 | :material-clock-outline: |
@@ -55,7 +55,7 @@
 
 | 章 | 模式 | 一句话 | 状态 |
 |---|---|---|---|
-| 13 | [策略 Strategy](behavioral/strategy.md) | 封装可互换的算法，运行时切换 | :material-check: |
+| 13 | [策略 Strategy](behavioral/strategy/index.md) | 封装可互换的算法，运行时切换 | :material-check: |
 | 14 | 观察者 Observer | 状态变化时自动通知订阅者 | :material-clock-outline: |
 | 15 | 模板方法 Template Method | 固定流程骨架，步骤可替换 | :material-clock-outline: |
 | 16 | 迭代器 Iterator | 不暴露内部结构地遍历集合 | :material-clock-outline: |

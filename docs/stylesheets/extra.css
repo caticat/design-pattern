@@ -205,6 +205,30 @@
   border-color: var(--dp-coral);
 }
 
+/* 紧跟代码块的运行按钮：拼成代码块底部的工具栏，与代码连为一体 */
+.md-typeset .highlight:has(+ p > .md-button) pre {
+  margin-bottom: 0;
+}
+
+.md-typeset .highlight:has(+ p > .md-button) pre > code {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.md-typeset .highlight + p:has(> .md-button) {
+  margin-top: 0;
+  padding: 0.4em 0.8em;
+  text-align: right;
+  background-color: var(--md-code-bg-color);
+  border-top: 1px dashed var(--md-default-fg-color--lightest);
+  border-radius: 0 0 8px 8px;
+}
+
+.md-typeset .highlight + p > .md-button {
+  font-size: 0.7rem;
+  padding: 0.3em 1.2em;
+}
+
 /* ---------- 提示框：淡色细边、极浅底色、无阴影 ---------- */
 .md-typeset .admonition,
 .md-typeset details {

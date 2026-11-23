@@ -111,7 +111,7 @@ docs/<分类>/<模式>/
     [:material-play: 在 Go Playground 运行](https://go.dev/play/p/TODO){ .md-button .md-button--primary target=_blank }
     ```
 
-    Playground 从公共仓库拉取模式包，故代码改动后须**先推送**，再运行 `python -I scripts/playground.py --update` 刷新链接并提交；不带参数为离线校验。
+    按钮**紧跟在它运行的示例代码块之后**（中间不插图、不插文字），样式会自动拼成代码块底部的工具栏；该节插图放在代码之前。Playground 从公共仓库拉取模式包，故代码改动后须**先推送**，再运行 `python -I scripts/playground.py --update` 刷新链接并提交；不带参数为离线校验。
 
 ## 自检清单（提交人工审查前逐条确认）
 
