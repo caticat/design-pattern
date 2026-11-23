@@ -1,6 +1,9 @@
 package factorymethod
 
-import "testing"
+import (
+	"errors"
+	"testing"
+)
 
 func TestNewNotifier(t *testing.T) {
 	if n, err := NewNotifier("email"); err != nil {
@@ -27,6 +30,36 @@ func TestSignUpUnknown(t *testing.T) {
 type fake struct{ sent []string }
 
 func (f *fake) Send(to, msg string) { f.sent = append(f.sent, to+":"+msg) }
+
+func TestSignUpWith(t *testing.T) {
+	n := &fake{}
+	calls := 0
+	err := SignUpWith("custom", "小明", func(kind string) (Notifier, error) {
+		calls++
+		if kind != "custom" {
+			t.Errorf("创建参数 = %q，想要 custom", kind)
+		}
+		return n, nil
+	})
+	if err != nil || calls != 1 || len(n.sent) != 1 || n.sent[0] != "小明:欢迎注册" {
+		t.Fatalf("错误 = %v，创建次数 = %d，通知 = %v", err, calls, n.sent)
+	}
+}
+
+func TestSignUpWithFactoryError(t *testing.T) {
+	n := &fake{}
+	want := errors.New("创建失败")
+	err := SignUpWith("custom", "小明", func(string) (Notifier, error) { return n, want })
+	if err != want || len(n.sent) != 0 {
+		t.Fatalf("错误 = %v，通知 = %v", err, n.sent)
+	}
+}
+
+func TestSignUpWithNilFactory(t *testing.T) {
+	if err := SignUpWith("custom", "小明", nil); err == nil {
+		t.Fatal("空工厂应返回错误")
+	}
+}
 
 func TestRegistry(t *testing.T) {
 	f := &fake{}

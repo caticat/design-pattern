@@ -6,7 +6,6 @@ import (
 	"github.com/caticat/design-pattern/codes/creational/factorymethod"
 )
 
-// --8<-- [start:example]
 func Example() {
 	// 通知方式通常来自配置，业务代码只拿到 Notifier 接口
 	for _, kind := range []string{"email", "sms", "pigeon"} {
@@ -18,6 +17,20 @@ func Example() {
 	// [邮件 smtp.example.com] 发给 小明：欢迎注册
 	// [短信]【Go 商城】发给 小明：欢迎注册
 	// 出错: 未知的通知方式 "pigeon"
+}
+
+// --8<-- [start:example]
+func ExampleSignUpWith() {
+	// 装配时选择创建方式，注册流程不变。
+	if err := factorymethod.SignUpWith("sms", "小明", factorymethod.NewNotifier); err != nil {
+		fmt.Println(err)
+	}
+	if err := factorymethod.SignUpWith("wechat", "小明", factorymethod.Create); err != nil {
+		fmt.Println(err)
+	}
+	// Output:
+	// [短信]【Go 商城】发给 小明：欢迎注册
+	// [微信] 发给 小明：欢迎注册
 }
 
 // --8<-- [end:example]

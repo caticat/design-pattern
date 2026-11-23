@@ -1,5 +1,4 @@
-// Package factorymethod 演示工厂方法模式：把「创建哪个类型」集中到一个函数里，
-// 调用方只说要什么，拿到的是接口。
+// Package factorymethod 演示如何把创建决策交给可替换的工厂函数。
 package factorymethod
 
 import "fmt"
@@ -31,7 +30,7 @@ func (s *SMSNotifier) Send(to, msg string) {
 // --8<-- [end:product]
 
 // --8<-- [start:factory]
-// NewNotifier 是工厂方法：按 kind 决定创建哪种通知器，返回接口。
+// NewNotifier 是简单工厂：按 kind 决定创建哪种通知器。
 // 创建细节（服务器地址、签名）只写在这一处。
 func NewNotifier(kind string) (Notifier, error) {
 	switch kind {
@@ -47,9 +46,17 @@ func NewNotifier(kind string) (Notifier, error) {
 // --8<-- [end:factory]
 
 // --8<-- [start:client]
-// SignUp 只认 Notifier 接口，不知道也不关心具体类型。
+// SignUp 用默认的简单工厂创建通知器。
 func SignUp(kind, user string) error {
-	n, err := NewNotifier(kind)
+	return SignUpWith(kind, user, NewNotifier)
+}
+
+// SignUpWith 把创建交给 create。create 成功时必须返回可用的通知器。
+func SignUpWith(kind, user string, create func(string) (Notifier, error)) error {
+	if create == nil {
+		return fmt.Errorf("未提供通知器工厂")
+	}
+	n, err := create(kind)
 	if err != nil {
 		return err
 	}
