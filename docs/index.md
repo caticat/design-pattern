@@ -48,7 +48,7 @@
 | 8 | [代理 Proxy](structural/proxy/index.md) | 用替身控制对真实对象的访问 | :material-check: |
 | 9 | [外观 Facade](structural/facade/index.md) | 给复杂子系统一个简单入口 | :material-check: |
 | 10 | [组合 Composite](structural/composite/index.md) | 把对象组成树，统一对待单个和整体 | :material-check: |
-| 11 | 桥接 Bridge | 抽象与实现分开，各自变化 | :material-clock-outline: |
+| 11 | [桥接 Bridge](structural/bridge/index.md) | 抽象与实现分开，各自变化 | :material-check: |
 | 12 | 享元 Flyweight | 共享细粒度对象，节省内存 | :material-clock-outline: |
 
 ### 行为型：对象之间怎么协作

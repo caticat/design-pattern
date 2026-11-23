@@ -136,6 +136,12 @@ nav:
           - structural/composite/implementation.md
           - structural/composite/stdlib.md
           - structural/composite/summary.md
+      - 第 11 章 &nbsp; 桥接模式:
+          - structural/bridge/index.md
+          - structural/bridge/problem.md
+          - structural/bridge/implementation.md
+          - structural/bridge/stdlib.md
+          - structural/bridge/summary.md
   - 行为型模式:
       - behavioral/index.md
       - 第 13 章 &nbsp; 策略模式:
