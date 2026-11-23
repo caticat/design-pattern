@@ -8,7 +8,7 @@
 --8<-- "codes/behavioral/command/command.go:func"
 ```
 
-`command.Func(fan.Start)` 把目标风扇绑定到操作里，还没有启动风扇。有额外参数时，用闭包把参数一起带上。
+`command.Func(fan.Start)` 把目标风扇绑定到操作里，还没有启动风扇。有额外参数时，可用[闭包](../../appendix/callbacks.md)把参数一起带上。
 
 ```mermaid
 flowchart LR

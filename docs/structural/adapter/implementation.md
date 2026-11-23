@@ -20,7 +20,7 @@
 --8<-- "codes/structural/adapter/adapter.go:adapter"
 ```
 
-`var _ Payer = WalletAdapter{}` 是 Go 的常用写法：不产生任何运行时代码，只让编译器检查「适配器确实实现了目标接口」。
+`var _ Payer = WalletAdapter{}` 是 Go 的常用写法：不产生任何运行时代码，只让编译器检查「适配器确实实现了目标接口」。值和指针的区别见[接口与方法](../../appendix/interfaces.md)。
 
 !!! tip "适配器只做翻译"
 

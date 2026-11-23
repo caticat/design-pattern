@@ -17,45 +17,26 @@
 | 痛点 | 后果 |
 |---|---|
 | 创建细节到处重复 | 改一次服务器地址或签名，要找遍所有业务函数 |
-| 新增一种通知方式 | 每个 `switch` 都要改，漏一处就出错 |
-| 业务代码依赖具体类型 | 想换实现或在测试里换成假对象，都很难 |
+| 业务代码写死了创建方式 | 想接入新通知方式，或在测试里换成假对象，都得改流程 |
 
-根本原因：**「用什么」和「怎么造」写在了一起**。
+## 把创建交给可替换的函数
 
-## 把「怎么造」交给工厂
+把分支收进一个函数，得到的是**简单工厂**：调用方不必自己造对象，但创建规则仍固定在该函数中。想换一整套创建规则，就把创建函数传给注册流程。
 
-1. 所有通知方式实现同一个接口 `Notifier`（产品）。
-2. 写一个函数 `NewNotifier`（工厂），按名字决定创建哪种，返回接口。
-3. 业务代码只调用工厂，只用接口。
-
-==创建哪个类型只在工厂里决定一次，调用方只依赖接口==。
+==注册流程决定何时创建，传入的函数决定如何创建==。GoF 原版把创建步骤留给子类重写；Go 用函数参数提供同样的扩展点。
 
 ```mermaid
-classDiagram
-    direction LR
-    class SignUp
-    class NewNotifier {
-        +NewNotifier(kind) Notifier
-    }
-    class Notifier {
-        <<interface>>
-        +Send(to, msg)
-    }
-    class EmailNotifier
-    class SMSNotifier
-    SignUp ..> NewNotifier
-    SignUp ..> Notifier
-    NewNotifier ..> EmailNotifier
-    NewNotifier ..> SMSNotifier
-    Notifier <|.. EmailNotifier
-    Notifier <|.. SMSNotifier
+flowchart LR
+    A[调用方] -->|传入创建函数| B[SignUpWith]
+    B -->|调用| C[create]
+    C -->|返回| D[Notifier]
+    B -->|Send| D
 ```
 
-<p class="caption">SignUp 只认识工厂和接口，具体类型只有工厂知道</p>
+<p class="caption">注册流程只调用传入的 create，再用它返回的通知器发消息</p>
 
-| 角色 | 职责 | 本例中 |
-|---|---|---|
-| 产品（Product） | 定义统一接口 | `Notifier` |
-| 具体产品 | 实现接口 | `EmailNotifier`、`SMSNotifier` |
-| 工厂（Factory） | 决定创建哪个具体产品 | `NewNotifier` |
-| 客户端 | 通过工厂拿到产品并使用 | `SignUp` |
+| 角色 | 本例中 |
+|---|---|
+| 使用产品的流程 | `SignUpWith` |
+| 提供创建方式的函数 | `NewNotifier` 或 `Create` |
+| 产品接口与具体产品 | `Notifier`、`EmailNotifier`、`SMSNotifier` 等 |

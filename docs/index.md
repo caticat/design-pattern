@@ -8,10 +8,10 @@
 
 | 读者 | 怎么读 |
 |---|---|
-| 初学者 | 按章节顺序读：封面类比 → 问题与思路 → Go 实现 → 专题 → 小结 |
+| 初学者 | 先读[适配器](structural/adapter/index.md) → [策略](behavioral/strategy/index.md) → [装饰器](structural/decorator/index.md)，分别看接口转换、算法选择和功能叠加 |
 | 有经验的开发者 | 直接看每章的 Go 实现、专题（标准库实例、相近写法对比）和小结 Q & A |
 
-前置知识：Go 基础语法（结构体、接口、方法）。
+前置知识：Go 基础语法。不熟悉[接口与方法](appendix/interfaces.md)、[函数值与回调](appendix/callbacks.md)或[并发](appendix/concurrency.md)，读到相关示例时再查附录。
 
 ## 每章结构
 
@@ -34,7 +34,7 @@
 | 章 | 模式 | 一句话 | 状态 |
 |---|---|---|---|
 | 1 | [单例 Singleton](creational/singleton/index.md) | 全局只有一个实例 | :material-check: |
-| 2 | [工厂方法 Factory Method](creational/factory-method/index.md) | 让子类型决定创建什么 | :material-check: |
+| 2 | [工厂方法 Factory Method](creational/factory-method/index.md) | 在固定流程中替换创建方式 | :material-check: |
 | 3 | [抽象工厂 Abstract Factory](creational/abstract-factory/index.md) | 成套地创建相关对象 | :material-check: |
 | 4 | [建造者 Builder](creational/builder/index.md) | 一步步组装复杂对象 | :material-check: |
 | 5 | [原型 Prototype](creational/prototype/index.md) | 复制已有对象来创建新对象 | :material-check: |

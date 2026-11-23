@@ -1,37 +1,39 @@
 # 附录 A &nbsp; Go 并发速览
 
-正文涉及并发时，默认读者了解下面三个概念。不熟悉的话，读完这一页就能看懂各章。
+## goroutine：启动后不等它结束
 
-## goroutine
+在函数调用前加 `go`，这次调用就在新的 goroutine 中执行，调用方继续往下走。多个 goroutine 可以交错执行，不一定要在不同 CPU 核上同时跑。
 
-goroutine 是 Go 的轻量级线程：在函数调用前加 `go`，这个函数就在新的 goroutine 里**并发**执行，调用方不等它结束，继续往下走。
+## 数据竞争：等待结束不等于保护数据
 
-Go 程序天然是并发的。例如 `net/http` 的服务器为每个连接启动一个 goroutine，同一时刻可能有成百上千个 goroutine 在调用同一个函数。
-
-## 数据竞争
-
-多个 goroutine 无同步地同时读写同一个变量，叫数据竞争（data race）。下面 1000 个 goroutine 各给 `count` 加 1，结果却常常小于 1000：
+两个 goroutine 访问同一内存位置，至少有一次写入，而且没有同步为它们建立先后关系，这就叫数据竞争（data race）。下面用 `sync.WaitGroup` 等 1000 个任务结束，但它不会规定各次 `count++` 的先后：
 
 ```go
 --8<-- "codes/appendix/concurrency/example_test.go:race"
 ```
 
-`count++` 实际是「读出 → 加 1 → 写回」三步：两个 goroutine 同时读到 5，各自写回 6，就少加了一次。用 `go test -race` 或 `go run -race` 运行，Go 会报告发生竞争的位置。
+`count++` 是「读出 → 加 1 → 写回」：两边都读到 5，再各自写回 6，就少加了一次。
 
-## 用 sync 包同步
+## 用同一把锁保护共享变量
 
-给 `count++` 加上互斥锁，同一时刻只有一个 goroutine 能执行它：
+并发执行的 `count++` 用同一把锁保护，一次只允许一个 goroutine 修改计数。`Wait` 返回后，这里才读取最终结果。
 
 ```go
 --8<-- "codes/appendix/concurrency/example_test.go:mutex"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/osiyjdH982n){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/ByZloUFm9do){ .md-button .md-button--primary target=_blank }
 
-运行可以看到：`Example_race` 每次输出不同，`Example_mutex` 总是 1000。
+在线可比较两个结果：反例可能小于 1000，也可能恰好是 1000；加锁后一定是 1000。普通测试不运行故意有竞争的 Example（它没有 `Output`）。要看检测报告，在仓库根目录执行：
 
-| 工具 | 作用 | 出现在 |
-|---|---|---|
-| `sync.Mutex` | 互斥锁：同一时刻只有一个 goroutine 能执行 `Lock` 与 `Unlock` 之间的代码 | 上例 |
-| `sync.WaitGroup` | 等一组 goroutine 全部结束 | 上例 |
-| `sync.Once` | 一段代码只执行一次，并发调用也一样 | [1.2 单例的 Go 实现](../creational/singleton/implementation.md) |
+```bash
+go test -race -tags=race_demo -count=1 -run '^TestIntentionalRace$' ./codes/appendix/concurrency
+```
+
+需要支持 `-race` 的平台、开启 CGO 并装有兼容的 C 编译器。看到 `WARNING: DATA RACE` 且命令失败，才是这个反例的预期结果。
+
+| 遇到什么 | 怎么处理 |
+|---|---|
+| 普通 map 有并发写 | 用同一把锁保护相关读写，如[享元缓存](../structural/flyweight/summary.md) |
+| 外部回调可能再次进入当前对象 | 锁内复制订阅列表，释放锁后调用，如[观察者](../behavioral/observer/summary.md) |
+| 多处调用，但只想初始化一次 | 用 `sync.Once`，见[单例实现](../creational/singleton/implementation.md) |

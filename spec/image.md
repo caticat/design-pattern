@@ -5,7 +5,7 @@
 | 图类型 | 生成方式 | 位置 |
 |---|---|---|
 | 封面大图（每章 1 张，章首页 `{ .cover }`） | 生图模型 | `docs/assets/images/<模式>.webp` |
-| 过程插图（每章 2–3 张，节内 `{ .illus }` + 图注） | 生图模型 | `docs/assets/images/<模式>-<用途>.webp` |
+| 过程插图（问题节必有，其余按需；`{ .illus }` + 图注） | 生图模型 | `docs/assets/images/<模式>-<用途>.webp` |
 | 类图 / 时序图 / 流程图 | Mermaid，写在 Markdown 中 | 正文 |
 
 过程插图让读者「看懂模式解决了什么」，与 Mermaid 互补（插图讲直觉，Mermaid 讲精确结构）。样板章单例的配置：

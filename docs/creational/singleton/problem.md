@@ -14,7 +14,7 @@
 --8<-- "codes/creational/singleton/bad.go:bad"
 ```
 
-单线程下这段代码没问题。但 Go 程序天然是并发的：两个 goroutine（并发执行的函数，见[附录 A](../../appendix/concurrency.md)）可能**同时**看到 `naive == nil`，于是各自创建一份配置。
+顺序调用时，这段代码只会创建一份配置。如果两个 goroutine（独立执行的任务，见[附录 A](../../appendix/concurrency.md)）并发调用，它们都可能在写入前看到 `naive == nil`，于是各自创建一份。
 
 ```mermaid
 sequenceDiagram
@@ -29,7 +29,7 @@ sequenceDiagram
 
 <p class="caption">两个 goroutine 同时检查到 nil，配置被加载了两次</p>
 
-后果有两个：昂贵的加载做了不止一次；`G1` 拿到的实例 A 随后被覆盖，两边用的不是同一份配置。这种「多个 goroutine 无同步地同时读写同一变量」叫数据竞争（data race），`go test -race` 能检测出来。
+加载可能执行两次，调用方也可能拿到不同的实例。这里对 `naive` 的读写没有同步，属于数据竞争。
 
 ## 让创建只发生一次
 

@@ -2,7 +2,7 @@
 
 ## Go 更常见的写法：函数式选项
 
-Go 社区更常用**函数式选项（Functional Options）**：每个可选参数写成一个函数，构造函数用可变参数接收。
+Go 社区更常用**函数式选项（Functional Options）**：每个可选参数写成一个函数，构造函数用可变参数接收。`WithPort` 返回的函数会记住端口号（见[函数值与回调](../../appendix/callbacks.md)）。
 
 ```go
 --8<-- "codes/creational/builder/options.go:options"

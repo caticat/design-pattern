@@ -30,8 +30,14 @@ codes/   Go 代码，按 creational / structural / behavioral 分类
 spec/    写作、代码、插图规范
 ```
 
+## 检查与发布
+
+向 `master` 提交或发起拉取请求时，GitHub Actions 会检查 Go 示例、严格构建站点并校验 Playground 链接。
+
+要发布在线站点，维护者先在仓库 **Settings → Pages → Source** 选择 **GitHub Actions**，再到 **Actions → 检查与发布 → Run workflow** 选择 `master` 手动运行。自动检查和拉取请求不会发布站点。
+
 ## 说明
 
-- 本项目的正文、代码与插图均由 AI 生成，经人工审查。
-- 吉祥物形象受 Go Gopher 启发。Go Gopher 由 [Renée French](https://reneefrench.blogspot.com/) 设计，以 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 授权。
+- 本项目的正文、代码与插图均由 AI 生成，供人工审查。
+- 吉祥物参考了 [Go Gopher 原作](https://go.dev/blog/gopher)，加入黄色安全帽和工具腰带。原作由 Renée French 设计，采用 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 许可；这不是对整书的授权声明。
 - 致敬并参考了 [hello-algo](https://github.com/krahets/hello-algo) 的组织方式。

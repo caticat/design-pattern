@@ -10,7 +10,7 @@
 
 **第 1 步**：让 `Editor` 自己保存标题和正文。外部用 `ReplaceLine` 改一行，用 `Text` 读取拼好的字符串，拿不到内部切片。
 
-**第 2 步**：定义字段不导出的 `Memento`。`Save` 和 `Restore` 都用标准库 `slices.Clone`（Go 1.21 起）复制行切片：保存后改稿，不会改到快照；恢复后再改稿，也不会改到被用过的快照。本例每行都是不可变字符串，复制切片元素就够了。
+**第 2 步**：定义字段不导出的 `Memento`。`Save` 和 `Restore` 都用标准库 `slices.Clone`（Go 1.21 起）复制行切片：保存后改稿，不会改到快照；恢复后再改稿，也不会改到被用过的快照。本例每行都是不可变字符串，复制切片元素就够了；若元素还含可变引用，见[复制与共享](../../creational/prototype/copy.md)。
 
 ```go
 --8<-- "codes/behavioral/memento/memento.go:snapshot"

@@ -23,7 +23,7 @@
 
 **Q**：一个建造者可以 Build 多次吗？
 
-本例可以：`Build` 返回副本，改几项再 `Build` 就得到另一个 `Server`，互不影响（见仓库中 `builder_test.go`）。但建造者本身不是并发安全的，不要让多个 goroutine 同时修改同一个建造者（见[附录 A](../../appendix/concurrency.md)）。
+本例可以：`Build` 返回副本，改几项再 `Build` 就得到另一个 `Server`，互不影响（如果新增可变引用字段，要重新检查[复制与共享](../prototype/copy.md)）。但建造者本身不是并发安全的，不要让多个 goroutine 同时修改同一个建造者（见[附录 A](../../appendix/concurrency.md)）。
 
 **Q**：函数式选项能报错吗？
 
