@@ -124,6 +124,12 @@ nav:
           - structural/proxy/implementation.md
           - structural/proxy/uses.md
           - structural/proxy/summary.md
+      - 第 9 章 &nbsp; 外观模式:
+          - structural/facade/index.md
+          - structural/facade/problem.md
+          - structural/facade/implementation.md
+          - structural/facade/stdlib.md
+          - structural/facade/summary.md
   - 行为型模式:
       - behavioral/index.md
       - 第 13 章 &nbsp; 策略模式:
