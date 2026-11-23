@@ -142,6 +142,12 @@ nav:
           - structural/bridge/implementation.md
           - structural/bridge/stdlib.md
           - structural/bridge/summary.md
+      - 第 12 章 &nbsp; 享元模式:
+          - structural/flyweight/index.md
+          - structural/flyweight/problem.md
+          - structural/flyweight/implementation.md
+          - structural/flyweight/stdlib.md
+          - structural/flyweight/summary.md
   - 行为型模式:
       - behavioral/index.md
       - 第 13 章 &nbsp; 策略模式:
