@@ -2,6 +2,7 @@ package observer
 
 import (
 	"fmt"
+	"slices"
 	"testing"
 )
 
@@ -42,4 +43,20 @@ func Example_bus() {
 	// 日志：A001
 	// 短信：A001
 	// 日志：A002
+}
+
+func TestBusUnsubscribeDuringEmit(t *testing.T) {
+	var bus Bus
+	var got []string
+	var cancel func()
+	cancel = bus.On(func(o Order) {
+		got = append(got, "A:"+o.ID)
+		cancel()
+	})
+	bus.On(func(o Order) { got = append(got, "B:"+o.ID) })
+	bus.Emit(Order{ID: "1"})
+	bus.Emit(Order{ID: "2"})
+	if want := []string{"A:1", "B:1", "B:2"}; !slices.Equal(got, want) {
+		t.Fatalf("got %v, want %v", got, want)
+	}
 }

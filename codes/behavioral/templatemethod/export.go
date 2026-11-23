@@ -1,7 +1,9 @@
 package templatemethod
 
 import (
+	"encoding/csv"
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -48,8 +50,14 @@ func Export(e Exporter, rows []Record) string {
 // CSV 只实现必选的两步。
 type CSV struct{}
 
-func (CSV) Header() string      { return "name,score" }
-func (CSV) Row(r Record) string { return fmt.Sprintf("%s,%d", r.Name, r.Score) }
+func (CSV) Header() string { return "name,score" }
+func (CSV) Row(r Record) string {
+	var b strings.Builder
+	w := csv.NewWriter(&b)
+	_ = w.Write([]string{r.Name, strconv.Itoa(r.Score)}) // 写入内存的 Builder 不会失败。
+	w.Flush()
+	return strings.TrimSuffix(b.String(), "\n") // 行尾换行由 Export 统一追加。
+}
 
 // Markdown 额外实现了钩子 Footer。
 type Markdown struct{}

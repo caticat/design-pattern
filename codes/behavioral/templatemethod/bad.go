@@ -14,7 +14,7 @@ func exportCSV(rows []Record) string {
 	var b strings.Builder
 	b.WriteString("name,score\n")
 	for _, r := range rows {
-		fmt.Fprintf(&b, "%s,%d\n", r.Name, r.Score)
+		b.WriteString((CSV{}).Row(r) + "\n")
 	}
 	return b.String()
 }

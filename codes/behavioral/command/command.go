@@ -22,13 +22,22 @@ func (c LightOn) Execute() { c.Lamp.TurnOn() }
 
 // --8<-- [start:queue]
 // Queue 暂存命令，并按提交顺序执行。
-type Queue struct{ pending []Command }
+type Queue struct {
+	pending []Command
+	running bool
+}
 
 // Add 把命令排到队尾。
 func (q *Queue) Add(c Command) { q.pending = append(q.pending, c) }
 
 // Run 执行开始时已经入队的命令；执行期间新入队的命令留到下次。
 func (q *Queue) Run() {
+	if q.running {
+		return // 回调不能抢先执行下一批。
+	}
+	q.running = true
+	defer func() { q.running = false }()
+
 	batch := q.pending
 	q.pending = nil
 	for _, c := range batch {

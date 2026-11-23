@@ -1,6 +1,11 @@
 package templatemethod
 
-import "testing"
+import (
+	"encoding/csv"
+	"reflect"
+	"strings"
+	"testing"
+)
 
 var rows = []Record{{Name: "张三", Score: 95}, {Name: "李四", Score: 82}}
 
@@ -27,5 +32,17 @@ func TestHookOptional(t *testing.T) {
 func TestEmbedTrap(t *testing.T) {
 	if got := (csvExporter{}).Run(); got != "（默认表头）" {
 		t.Errorf("got %q", got)
+	}
+}
+
+func TestCSVRecordRoundTrip(t *testing.T) {
+	name := "张三, \"昵称\"\n第二行"
+	records := []Record{{Name: name, Score: 95}}
+	want := [][]string{{"name", "score"}, {name, "95"}}
+	for _, output := range []string{Export(CSV{}, records), exportCSV(records)} {
+		got, err := csv.NewReader(strings.NewReader(output)).ReadAll()
+		if err != nil || !reflect.DeepEqual(got, want) {
+			t.Fatalf("got %q, error %v; want %q", got, err, want)
+		}
 	}
 }

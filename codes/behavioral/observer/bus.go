@@ -19,7 +19,8 @@ func (b *Bus) On(fn func(Order)) (cancel func()) {
 }
 
 func (b *Bus) Emit(o Order) {
-	for _, s := range b.subs {
+	// 本轮使用订阅快照，回调里的订退只影响之后的通知。
+	for _, s := range slices.Clone(b.subs) {
 		s.fn(o)
 	}
 }

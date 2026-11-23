@@ -11,6 +11,7 @@ func TestQueue(t *testing.T) {
 	q.Add(Func(func() {
 		got = append(got, 1)
 		q.Add(Func(func() { got = append(got, 3) }))
+		q.Run() // 回调中重入：第 3 条必须留到下一批。
 	}))
 	q.Add(Func(func() { got = append(got, 2) }))
 	if len(got) != 0 {
