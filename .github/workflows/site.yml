@@ -47,6 +47,53 @@ jobs:
         with:
           path: site
 
+  check-container:
+    name: 校验容器
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 构建并检查容器
+        run: |
+          docker build -t design-pattern:check .
+          id=$(docker run -d --rm -p 127.0.0.1:8080:8080 design-pattern:check)
+          trap 'docker stop "$id"' EXIT
+          base=http://127.0.0.1:8080
+          test "$(curl -fsSL --retry 5 --retry-connrefused -o /dev/null -w '%{url_effective}' "$base/")" = "$base/design-pattern/"
+          curl -fsS "$base/design-pattern/behavioral/interpreter/" -o /dev/null
+          curl -fsS "$base/design-pattern/assets/images/mascot.webp" -o /dev/null
+          curl -fsS "$base/design-pattern/stylesheets/extra.css" -o /dev/null
+          curl -fsS "$base/design-pattern/search/search_index.json" -o /dev/null
+          test "$(curl -sS -o /dev/null -w '%{http_code}' "$base/design-pattern/not-found/")" = 404
+
+  publish-container:
+    name: 发布容器到 GHCR
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: [check, check-container]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    concurrency:
+      group: publish-container
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/caticat/design-pattern:latest
+            ghcr.io/caticat/design-pattern:sha-${{ github.sha }}
+          labels: org.opencontainers.image.revision=${{ github.sha }}
+
   deploy:
     name: 发布到 GitHub Pages
     if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master'

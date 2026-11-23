@@ -1,0 +1,16 @@
+**
+!Dockerfile
+!requirements.txt
+!mkdocs.yml
+!docs/
+!docs/**
+!codes/
+!codes/**
+!hooks/
+!hooks/captions.py
+!deploy/
+!deploy/nginx.conf
+**/__pycache__/
+**/.env*
+**/*.pem
+**/*.key

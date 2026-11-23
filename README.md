@@ -5,6 +5,17 @@
 - 每章一个模式：章首类比大图 + 4 个短小节（问题与思路 → Go 实现 → 专题 → 小结），每页一两屏读完
 - 代码只用标准库，每个模式都附测试，可直接 `go test`
 
+## Docker 部署
+
+公开镜像发布后，无需登录即可拉取并启动（支持 Linux `amd64`、`arm64`）：
+
+```bash
+docker pull ghcr.io/caticat/design-pattern:latest
+docker run -d --name design-pattern --restart unless-stopped -p 8080:8080 ghcr.io/caticat/design-pattern:latest
+```
+
+打开 <http://localhost:8080/>。如需用当前源码构建，先执行 `docker build -t design-pattern .`，再把运行命令里的镜像名改为 `design-pattern`。
+
 ## 本地预览
 
 ```bash
