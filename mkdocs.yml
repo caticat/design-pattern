@@ -82,6 +82,12 @@ nav:
           - creational/singleton/summary.md
   - 结构型模式:
       - structural/index.md
+      - 第 6 章 &nbsp; 适配器模式:
+          - structural/adapter/index.md
+          - structural/adapter/problem.md
+          - structural/adapter/implementation.md
+          - structural/adapter/stdlib.md
+          - structural/adapter/summary.md
       - 第 7 章 &nbsp; 装饰器模式:
           - structural/decorator/index.md
           - structural/decorator/problem.md

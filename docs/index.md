@@ -2,7 +2,7 @@
 
 用**图**建立直觉，用 **Go** 落地，用**测试**保证代码可运行。讲解 GoF 23 个经典设计模式。
 
-![吉祥物 Gopher 用转换头解决插头不匹配的问题](assets/images/adapter.webp){ .cover }
+![吉祥物 Gopher 用转换头解决插头不匹配的问题](assets/images/adapter-problem.webp){ .cover }
 
 ## 这本书适合谁
 
@@ -43,7 +43,7 @@
 
 | 章 | 模式 | 一句话 | 状态 |
 |---|---|---|---|
-| 6 | 适配器 Adapter | 转换接口，让不兼容的类型一起工作 | :material-clock-outline: |
+| 6 | [适配器 Adapter](structural/adapter/index.md) | 转换接口，让不兼容的类型一起工作 | :material-check: |
 | 7 | [装饰器 Decorator](structural/decorator/index.md) | 层层包装，动态叠加功能 | :material-check: |
 | 8 | 代理 Proxy | 用替身控制对真实对象的访问 | :material-clock-outline: |
 | 9 | 外观 Facade | 给复杂子系统一个简单入口 | :material-clock-outline: |
