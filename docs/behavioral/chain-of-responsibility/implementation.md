@@ -20,9 +20,9 @@
 --8<-- "codes/behavioral/chain/chain.go:chain"
 ```
 
-![三步：吉祥物举起一段只有一个孔的滑道；吉祥物把三段孔从小到大的滑道首尾拼接，每个孔下站着端杯子的机器人；一枚硬币滚过小孔、掉进中孔下机器人的杯子，机器人欢呼，吉祥物竖起大拇指](../../assets/images/chain-of-responsibility-steps.webp){ .illus }
+![三步：举起单段滑道；从高到低拼接小孔、中孔、大孔；中号硬币越过小孔，落进中孔](../../assets/images/chain-of-responsibility-steps.webp){ .illus }
 
-<p class="caption">每段滑道只管一个孔；首尾拼起来；硬币自己滚到装得下它的那一格</p>
+<p class="caption">从高到低按孔径由小到大拼接；中号硬币越过小孔，在中孔停下</p>
 
 !!! tip "改规则只改串链的地方"
 
