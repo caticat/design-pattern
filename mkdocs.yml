@@ -118,6 +118,12 @@ nav:
           - structural/decorator/implementation.md
           - structural/decorator/middleware.md
           - structural/decorator/summary.md
+      - 第 8 章 &nbsp; 代理模式:
+          - structural/proxy/index.md
+          - structural/proxy/problem.md
+          - structural/proxy/implementation.md
+          - structural/proxy/uses.md
+          - structural/proxy/summary.md
   - 行为型模式:
       - behavioral/index.md
       - 第 13 章 &nbsp; 策略模式:
