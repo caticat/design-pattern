@@ -92,6 +92,12 @@ nav:
           - creational/abstract-factory/implementation.md
           - creational/abstract-factory/extend.md
           - creational/abstract-factory/summary.md
+      - 第 4 章 &nbsp; 建造者模式:
+          - creational/builder/index.md
+          - creational/builder/problem.md
+          - creational/builder/implementation.md
+          - creational/builder/options.md
+          - creational/builder/summary.md
   - 结构型模式:
       - structural/index.md
       - 第 6 章 &nbsp; 适配器模式:
