@@ -60,12 +60,12 @@
 | 15 | [模板方法 Template Method](behavioral/template-method/index.md) | 固定流程骨架，步骤可替换 | :material-check: |
 | 16 | [迭代器 Iterator](behavioral/iterator/index.md) | 不暴露内部结构地遍历集合 | :material-check: |
 | 17 | [责任链 Chain of Responsibility](behavioral/chain-of-responsibility/index.md) | 请求沿链传递，直到有人处理 | :material-check: |
-| 18 | 命令 Command | 把请求封装成对象 | :material-clock-outline: |
-| 19 | 状态 State | 状态改变时，行为跟着改变 | :material-clock-outline: |
-| 20 | 备忘录 Memento | 保存并恢复对象状态 | :material-clock-outline: |
-| 21 | 中介者 Mediator | 用中间人替代对象间的直接通信 | :material-clock-outline: |
-| 22 | 访问者 Visitor | 不改类型，为其添加新操作 | :material-clock-outline: |
-| 23 | 解释器 Interpreter | 为简单语言定义文法并解释执行 | :material-clock-outline: |
+| 18 | [命令 Command](behavioral/command/index.md) | 把请求封装成对象 | :material-check: |
+| 19 | [状态 State](behavioral/state/index.md) | 状态改变时，行为跟着改变 | :material-check: |
+| 20 | [备忘录 Memento](behavioral/memento/index.md) | 保存并恢复对象状态 | :material-check: |
+| 21 | [中介者 Mediator](behavioral/mediator/index.md) | 用中间人替代对象间的直接通信 | :material-check: |
+| 22 | [访问者 Visitor](behavioral/visitor/index.md) | 不改类型，为其添加新操作 | :material-check: |
+| 23 | [解释器 Interpreter](behavioral/interpreter/index.md) | 为简单语言定义文法并解释执行 | :material-check: |
 
 ## 运行代码
 

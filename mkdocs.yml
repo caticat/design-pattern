@@ -180,5 +180,41 @@ nav:
           - behavioral/chain-of-responsibility/implementation.md
           - behavioral/chain-of-responsibility/stdlib.md
           - behavioral/chain-of-responsibility/summary.md
+      - 第 18 章 &nbsp; 命令模式:
+          - behavioral/command/index.md
+          - behavioral/command/problem.md
+          - behavioral/command/implementation.md
+          - behavioral/command/stdlib.md
+          - behavioral/command/summary.md
+      - 第 19 章 &nbsp; 状态模式:
+          - behavioral/state/index.md
+          - behavioral/state/problem.md
+          - behavioral/state/implementation.md
+          - behavioral/state/state-machine.md
+          - behavioral/state/summary.md
+      - 第 20 章 &nbsp; 备忘录模式:
+          - behavioral/memento/index.md
+          - behavioral/memento/problem.md
+          - behavioral/memento/implementation.md
+          - behavioral/memento/undo-history.md
+          - behavioral/memento/summary.md
+      - 第 21 章 &nbsp; 中介者模式:
+          - behavioral/mediator/index.md
+          - behavioral/mediator/problem.md
+          - behavioral/mediator/implementation.md
+          - behavioral/mediator/coordination.md
+          - behavioral/mediator/summary.md
+      - 第 22 章 &nbsp; 访问者模式:
+          - behavioral/visitor/index.md
+          - behavioral/visitor/problem.md
+          - behavioral/visitor/implementation.md
+          - behavioral/visitor/tradeoffs.md
+          - behavioral/visitor/summary.md
+      - 第 23 章 &nbsp; 解释器模式:
+          - behavioral/interpreter/index.md
+          - behavioral/interpreter/problem.md
+          - behavioral/interpreter/implementation.md
+          - behavioral/interpreter/tradeoffs.md
+          - behavioral/interpreter/summary.md
   - 附录:
       - appendix/concurrency.md
