@@ -56,9 +56,10 @@ jobs:
         run: |
           docker build -t design-pattern:check .
           id=$(docker run -d --rm -p 127.0.0.1:8080:8080 design-pattern:check)
-          trap 'docker stop "$id"' EXIT
+          trap 'status=$?; if [ "$status" -ne 0 ]; then docker logs "$id"; fi; docker stop "$id" >/dev/null' EXIT
           base=http://127.0.0.1:8080
-          test "$(curl -fsSL --retry 5 --retry-connrefused -o /dev/null -w '%{url_effective}' "$base/")" = "$base/design-pattern/"
+          url=$(curl -fsSL --retry 5 --retry-all-errors --retry-delay 1 --max-time 5 -o /dev/null -w '%{url_effective}' "$base/")
+          test "$url" = "$base/design-pattern/"
           curl -fsS "$base/design-pattern/behavioral/interpreter/" -o /dev/null
           curl -fsS "$base/design-pattern/assets/images/mascot.webp" -o /dev/null
           curl -fsS "$base/design-pattern/stylesheets/extra.css" -o /dev/null
