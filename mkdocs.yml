@@ -80,6 +80,12 @@ nav:
           - creational/singleton/implementation.md
           - creational/singleton/tradeoffs.md
           - creational/singleton/summary.md
+      - 第 2 章 &nbsp; 工厂方法模式:
+          - creational/factory-method/index.md
+          - creational/factory-method/problem.md
+          - creational/factory-method/implementation.md
+          - creational/factory-method/registry.md
+          - creational/factory-method/summary.md
   - 结构型模式:
       - structural/index.md
       - 第 6 章 &nbsp; 适配器模式:
