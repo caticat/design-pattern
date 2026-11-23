@@ -36,4 +36,4 @@
 --8<-- "codes/behavioral/observer/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/5j6WFB1Wbew){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/oGS2ip-LWdG){ .md-button .md-button--primary target=_blank }

@@ -221,3 +221,4 @@ nav:
       - appendix/concurrency.md
       - appendix/interfaces.md
       - appendix/callbacks.md
+  - 许可与鸣谢: credits.md

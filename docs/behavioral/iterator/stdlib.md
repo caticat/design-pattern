@@ -30,7 +30,7 @@
 | 怎么用 | `for it.HasNext() { it.Next() }` | `for v := range seq` |
 | 适合 | 暂停后继续、两个集合交替取 | 绝大多数遍历 |
 
-两者可以互转：`iter.Pull(seq)` 把推式的 `iter.Seq` 变成拉式的 `next()` 函数。
+用 `next, stop := iter.Pull(seq)` 把推式迭代器转成拉式。紧接着写 `defer stop()`：如果提前退出，`stop` 会让迭代器结束并执行清理；若 `next()` 已经返回 `false`，再调用 `stop` 也没问题。
 
 ## 什么时候用
 

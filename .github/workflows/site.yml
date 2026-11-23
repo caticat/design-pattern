@@ -41,6 +41,7 @@ jobs:
         run: |
           python -m pip install -r requirements.txt
           mkdocs build --strict
+          python -m unittest discover -s scripts -p test_playground.py
           python -I scripts/playground.py
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
@@ -79,13 +80,19 @@ jobs:
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
+      - name: 确认仍是主分支最新提交
+        id: release-head
+        run: bash scripts/check_release_head.sh
       - uses: docker/setup-buildx-action@v3
+        if: steps.release-head.outputs.current == 'true'
       - uses: docker/login-action@v3
+        if: steps.release-head.outputs.current == 'true'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/build-push-action@v6
+        if: steps.release-head.outputs.current == 'true'
         with:
           context: .
           platforms: linux/amd64,linux/arm64
@@ -101,6 +108,7 @@ jobs:
     needs: check
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pages: write
       id-token: write
     concurrency:
@@ -110,5 +118,10 @@ jobs:
       name: github-pages
       url: ${{ steps.publish.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+      - name: 确认仍是主分支最新提交
+        id: release-head
+        run: bash scripts/check_release_head.sh
       - uses: actions/deploy-pages@v4
+        if: steps.release-head.outputs.current == 'true'
         id: publish

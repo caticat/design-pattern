@@ -1,8 +1,8 @@
 # 模式目录
 
-23 个模式分为三类。可以按顺序读，也可以先找眼前的问题。
+按分类跳转：[创建型](#creational) · [结构型](#structural) · [行为型](#behavioral)
 
-## 创建型：怎么创建对象
+## 创建型：怎么创建对象 { #creational }
 
 | 章 | 模式 | 一句话 |
 |---|---|---|
@@ -12,7 +12,7 @@
 | 4 | [建造者 Builder](creational/builder/index.md) | 一步步组装复杂对象 |
 | 5 | [原型 Prototype](creational/prototype/index.md) | 复制已有对象来创建新对象 |
 
-## 结构型：怎么组合对象
+## 结构型：怎么组合对象 { #structural }
 
 | 章 | 模式 | 一句话 |
 |---|---|---|
@@ -24,7 +24,7 @@
 | 11 | [桥接 Bridge](structural/bridge/index.md) | 把两个可变维度拆开，各自变化 |
 | 12 | [享元 Flyweight](structural/flyweight/index.md) | 共享对象中可复用的部分，节省内存 |
 
-## 行为型：对象之间怎么协作
+## 行为型：对象之间怎么协作 { #behavioral }
 
 | 章 | 模式 | 一句话 |
 |---|---|---|

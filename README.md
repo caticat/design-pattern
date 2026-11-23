@@ -52,8 +52,8 @@ spec/    写作、代码、插图规范
 
 **个人主页的项目入口**统一维护在 [`caticat/caticat.github.io` 的链接配置](https://github.com/caticat/caticat.github.io/blob/master/src/config/site.config.js)。添加其他项目的链接时，只改这份配置；更新本书内容时，不用改个人主页。
 
-## 说明
+## 许可与鸣谢
 
-- 本项目的正文、代码与插图均由 AI 生成，供人工审查。
-- 吉祥物参考了 [Go Gopher 原作](https://go.dev/blog/gopher)，加入黄色安全帽和工具腰带。原作由 Renée French 设计，采用 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 许可；这不是对整书的授权声明。
-- 致敬并参考了 [hello-algo](https://github.com/krahets/hello-algo) 的组织方式。
+本项目的正文、示例代码和原创插图采用 [CC BY-NC-SA 4.0](LICENSE)，另有说明的第三方素材按原许可使用。非商业转载须署名、链接原站及许可，并注明是否修改；分享改编版须沿用相同或兼容的许可。详见[许可与鸣谢](https://caticat.github.io/design-pattern/credits/)。
+
+本书内容由 AI 生成，供人工审查。感谢 [《Hello 算法》](https://github.com/krahets/hello-algo) 提供图解与章节组织的参考，以及 Renée French 设计的 [Go Gopher 原作](https://go.dev/blog/gopher)（[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)）。

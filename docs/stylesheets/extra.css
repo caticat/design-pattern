@@ -11,7 +11,7 @@
   --dp-soft: rgba(0, 173, 216, 0.06);
   --dp-line: rgba(0, 125, 156, 0.16);
 
-  --md-primary-fg-color: var(--dp-teal);
+  --md-primary-fg-color: var(--dp-teal-dark);
   --md-primary-fg-color--light: #5dc9e2;
   --md-primary-fg-color--dark: var(--dp-teal-dark);
   --md-accent-fg-color: var(--dp-coral);
@@ -201,8 +201,8 @@
 
 .md-typeset .md-button--primary:hover,
 .md-typeset .md-button--primary:focus {
-  background-color: var(--dp-coral);
-  border-color: var(--dp-coral);
+  background-color: #b5402b;
+  border-color: #b5402b;
 }
 
 /* 紧跟代码块的运行按钮：拼成代码块底部的工具栏，与代码连为一体 */

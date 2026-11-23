@@ -100,7 +100,11 @@ def run(body: bytes) -> str | None:
             r = json.load(resp)
         err = r.get("Errors") or r.get("VetErrors") or ""
         if not err:
-            return "".join(e["Message"] for e in r.get("Events") or [])
+            output = "".join(e["Message"] for e in r.get("Events") or [])
+            if r.get("Status", 0) != 0:
+                print(f"Playground 程序退出状态 {r['Status']}：\n{output}")
+                return None
+            return output
         time.sleep(5)
     print(f"Playground 运行失败（代码是否已提交并推送？）：\n{err}")
     return None
@@ -120,12 +124,12 @@ def main() -> None:
         body = build(pkgs.pop())
         want = f"https://go.dev/play/p/{snippet_id(body)}"
         rel = md.relative_to(ROOT).as_posix()
+        if all(link == want for link in links):
+            print(f"ok      {rel}")
+            continue
         if not update:
-            if all(link == want for link in links):
-                print(f"ok      {rel}")
-            else:
-                print(f"STALE   {rel}  (运行 --update 刷新)")
-                stale += 1
+            print(f"STALE   {rel}  (运行 --update 刷新)")
+            stale += 1
             continue
         out = run(body)
         if out is None:

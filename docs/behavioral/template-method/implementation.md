@@ -14,7 +14,7 @@
 --8<-- "codes/behavioral/templatemethod/export.go:template"
 ```
 
-**第 3 步**：具体格式，只实现自己那几步。
+**第 3 步**：具体格式只实现自己的步骤。`CSV` 用标准库处理字段里的逗号、引号和换行；记录末尾的换行仍由 `Export` 统一添加。
 
 ```go
 --8<-- "codes/behavioral/templatemethod/export.go:concrete"
@@ -36,4 +36,4 @@
 --8<-- "codes/behavioral/templatemethod/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/Jnashes1OFf){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/N2lxHw7YjUy){ .md-button .md-button--primary target=_blank }

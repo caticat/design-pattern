@@ -8,7 +8,7 @@
 --8<-- "codes/behavioral/command/command.go:command"
 ```
 
-**第 2 步**：队列按顺序执行。`Run` 先取走当前批次，执行时新加的命令留给下一次。
+**第 2 步**：队列按顺序执行。`Run` 先取走当前批次，执行时新加的命令留给下一次。回调里再调用 `Run` 会直接返回，不会提前执行下一批。
 
 ```go
 --8<-- "codes/behavioral/command/command.go:queue"
@@ -30,4 +30,4 @@
 --8<-- "codes/behavioral/command/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/7w_DWFBg349){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/9MYA3oCm6Ti){ .md-button .md-button--primary target=_blank }

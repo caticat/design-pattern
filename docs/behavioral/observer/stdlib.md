@@ -8,7 +8,7 @@
 --8<-- "codes/behavioral/observer/bus.go:bus"
 ```
 
-用法：`cancel := bus.On(func(o Order) { ... })`，不再需要时 `cancel()`。取消用的是指针比较，所以不怕两个函数长得一样。
+用法：`cancel := bus.On(func(o Order) { ... })`，不再需要时 `cancel()`。`Emit` 遍历的是通知开始时的订阅快照：回调里可以退订自己，本轮其他订阅者仍会收到通知。这个版本没有加锁，不能并发订阅和通知。
 
 ## 标准库中的观察者
 
