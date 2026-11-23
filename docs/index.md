@@ -1,78 +1,22 @@
 # Go 设计模式图解
 
-用**图**建立直觉，用 **Go** 落地，用**测试**保证代码可运行。讲解 GoF 23 个经典设计模式。
+用图和可运行的 Go 示例，讲清 GoF 的 23 个经典设计模式：它们解决什么问题、怎么用、什么时候不用。
 
 ![吉祥物 Gopher 用转换头解决插头不匹配的问题](assets/images/adapter-problem.webp){ .cover }
 
-## 这本书适合谁
+## 设计模式有什么用？
 
-| 读者 | 怎么读 |
-|---|---|
-| 初学者 | 先读[适配器](structural/adapter/index.md) → [策略](behavioral/strategy/index.md) → [装饰器](structural/decorator/index.md)，分别看接口转换、算法选择和功能叠加 |
-| 有经验的开发者 | 直接看每章的 Go 实现、专题（标准库实例、相近写法对比）和小结 Q & A |
+设计模式是**对常见设计问题的解决思路**，不是一段照抄的代码。它帮你判断哪些地方可能变化，以及怎样让一次修改少影响其他代码。给这种做法起个名字，也方便团队讨论。
 
-前置知识：Go 基础语法。不熟悉[接口与方法](appendix/interfaces.md)、[函数值与回调](appendix/callbacks.md)或[并发](appendix/concurrency.md)，读到相关示例时再查附录。
+比如，业务需要一种付款接口，但现有的电子钱包提供的是另一种接口。与其在每个付款入口重复转换，不如用一个[适配器](structural/adapter/index.md)集中做转换。将来钱包的接口变了，通常只改适配器，业务流程不用跟着改。
 
-## 每章结构
+**先看问题，再选模式。** 如果直接调用就够清楚，而且没有重复的转换逻辑，不必为了用模式再加一层。
 
-一章讲一个模式，分成几个短页面，每页一两屏读完：
+## 从哪里开始？
 
-| 页面 | 内容 |
-|---|---|
-| 章首页 | 一张类比大图 + 一句话定义 |
-| N.1 问题与思路 | 不用模式时哪里出错，模式怎么解决，结构图 |
-| N.2 Go 实现 | 可运行代码、Example 测试、在线运行 |
-| N.3 专题 | 与相近写法的对比、标准库实例、什么时候用 |
-| N.4 小结 | 重点回顾与常见问题 |
+- **第一次学**：先读[适配器](structural/adapter/index.md) → [策略](behavioral/strategy/index.md) → [装饰器](structural/decorator/index.md)，分别看接口转换、算法选择和功能叠加。
+- **按问题查**：打开[模式目录](patterns.md)，按创建对象、组合对象和对象协作来找。
 
-## 目录
+每章先讲问题，再给 Go 实现和在线运行示例，最后讨论适用范围。不熟悉[接口与方法](appendix/interfaces.md)、[函数值与回调](appendix/callbacks.md)或[并发](appendix/concurrency.md)，可以读到相关示例时再查附录。
 
-图例：:material-check: 已完成　:material-clock-outline: 编写中
-
-### 创建型：怎么创建对象
-
-| 章 | 模式 | 一句话 | 状态 |
-|---|---|---|---|
-| 1 | [单例 Singleton](creational/singleton/index.md) | 全局只有一个实例 | :material-check: |
-| 2 | [工厂方法 Factory Method](creational/factory-method/index.md) | 在固定流程中替换创建方式 | :material-check: |
-| 3 | [抽象工厂 Abstract Factory](creational/abstract-factory/index.md) | 成套地创建相关对象 | :material-check: |
-| 4 | [建造者 Builder](creational/builder/index.md) | 一步步组装复杂对象 | :material-check: |
-| 5 | [原型 Prototype](creational/prototype/index.md) | 复制已有对象来创建新对象 | :material-check: |
-
-### 结构型：怎么组合对象
-
-| 章 | 模式 | 一句话 | 状态 |
-|---|---|---|---|
-| 6 | [适配器 Adapter](structural/adapter/index.md) | 转换接口，让不兼容的类型一起工作 | :material-check: |
-| 7 | [装饰器 Decorator](structural/decorator/index.md) | 层层包装，动态叠加功能 | :material-check: |
-| 8 | [代理 Proxy](structural/proxy/index.md) | 用替身控制对真实对象的访问 | :material-check: |
-| 9 | [外观 Facade](structural/facade/index.md) | 给复杂子系统一个简单入口 | :material-check: |
-| 10 | [组合 Composite](structural/composite/index.md) | 把对象组成树，统一对待单个和整体 | :material-check: |
-| 11 | [桥接 Bridge](structural/bridge/index.md) | 抽象与实现分开，各自变化 | :material-check: |
-| 12 | [享元 Flyweight](structural/flyweight/index.md) | 共享细粒度对象，节省内存 | :material-check: |
-
-### 行为型：对象之间怎么协作
-
-| 章 | 模式 | 一句话 | 状态 |
-|---|---|---|---|
-| 13 | [策略 Strategy](behavioral/strategy/index.md) | 封装可互换的算法，运行时切换 | :material-check: |
-| 14 | [观察者 Observer](behavioral/observer/index.md) | 状态变化时自动通知订阅者 | :material-check: |
-| 15 | [模板方法 Template Method](behavioral/template-method/index.md) | 固定流程骨架，步骤可替换 | :material-check: |
-| 16 | [迭代器 Iterator](behavioral/iterator/index.md) | 不暴露内部结构地遍历集合 | :material-check: |
-| 17 | [责任链 Chain of Responsibility](behavioral/chain-of-responsibility/index.md) | 请求沿链传递，直到有人处理 | :material-check: |
-| 18 | [命令 Command](behavioral/command/index.md) | 把请求封装成对象 | :material-check: |
-| 19 | [状态 State](behavioral/state/index.md) | 状态改变时，行为跟着改变 | :material-check: |
-| 20 | [备忘录 Memento](behavioral/memento/index.md) | 保存并恢复对象状态 | :material-check: |
-| 21 | [中介者 Mediator](behavioral/mediator/index.md) | 用中间人替代对象间的直接通信 | :material-check: |
-| 22 | [访问者 Visitor](behavioral/visitor/index.md) | 不改类型，为其添加新操作 | :material-check: |
-| 23 | [解释器 Interpreter](behavioral/interpreter/index.md) | 为简单语言定义文法并解释执行 | :material-check: |
-
-## 运行代码
-
-```bash
-git clone https://github.com/caticat/design-pattern.git
-cd design-pattern
-go test ./...
-```
-
-所有代码只依赖 Go 1.23+ 标准库。
+[查看 23 个模式](patterns.md){ .md-button .md-button--primary }
