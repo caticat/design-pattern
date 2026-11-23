@@ -36,6 +36,6 @@
 --8<-- "codes/structural/adapter/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/TODO){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/cZxULk5zdNf){ .md-button .md-button--primary target=_blank }
 
 Playground 中还包含 [6.3](stdlib.md) 的函数适配器示例，可以一起运行。
