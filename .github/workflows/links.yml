@@ -20,6 +20,7 @@ jobs:
           args: >-
             --no-progress
             --scheme https --scheme http
+            --exclude-loopback
             --exclude '^https://go\.dev/play/'
             --exclude '^https://caticat\.github\.io/design-pattern'
             'docs/**/*.md' README.md CONTRIBUTING.md
