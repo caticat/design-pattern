@@ -2,7 +2,7 @@
 
 ## 三步写完
 
-**第 1 步**：产品。字段全部小写，包外无法直接用结构体字面量创建，只能走建造者。
+**第 1 步**：产品。字段全部小写，包外无法设置字段，想得到配好的 `Server` 只能走建造者。（`builder.Server{}` 这样的零值仍能写出来，但它没有经过校验，不应使用。）
 
 ```go
 --8<-- "codes/creational/builder/server.go:product"
@@ -35,4 +35,4 @@
 --8<-- "codes/creational/builder/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/3MB3HpGhCXe){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/3MB3HpGhCXe){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/creational/builder){ .md-button target=_blank }

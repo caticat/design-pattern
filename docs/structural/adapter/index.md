@@ -21,4 +21,6 @@
 | [6.1 问题与思路](problem.md) | 业务代码直接调用第三方 SDK 有什么问题，转换头怎么解决 |
 | [6.2 Go 实现](implementation.md) | 目标接口、被适配者、适配器三步写完 |
 | [6.3 函数适配器与标准库](stdlib.md) | 把函数适配成接口、标准库中的例子、什么时候用 |
-| [6.4 小结](summary.md) | 重点回顾与常见问题 |
+| [6.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 B 接口与方法](../../appendix/interfaces.md) · [附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[包一层](../../compare.md#wrappers)

@@ -28,3 +28,13 @@
 **Q**：其它语言的「双重检查加锁」在 Go 里能用吗？
 
 不要手写。先判空、加锁、再判空的写法在 Go 中容易出现数据竞争；`sync.Once` 内部已经正确、高效地实现了它，直接用即可。
+
+## 动手试试
+
+1. **给日志器也做一个单例**：仿照 `GetConfig`，用 `sync.OnceValue` 写一个 `GetLogger`，用原子计数器记录创建次数，再让 100 个 goroutine 同时调用它。可直接在本章 Playground 里完成。
+
+    提示：计数器放在传给 `sync.OnceValue` 的函数里，用 `sync.WaitGroup` 等所有 goroutine 结束。检验：所有调用拿到同一个指针，创建次数为 1；`singleton.GetInstance()` 的行为不受影响。
+
+2. **观察初始化 panic 后的两种结局**：分别用 `sync.OnceValue` 和 `sync.Once` 包一个必定 `panic("加载失败")` 的初始化函数，各调用两次，用 `recover` 接住。可直接在本章 Playground 里完成。
+
+    提示：写一个 `try(f func()) (p any)` 辅助函数，在 `defer` 里 `p = recover()`。检验：`OnceValue` 两次都得到 `加载失败`，`Once` 第二次不再 panic、返回 `nil`；两种写法的初始化函数都只执行 1 次。

@@ -21,4 +21,6 @@
 | [10.1 问题与思路](problem.md) | 文件和目录分开处理的麻烦，一个共同接口怎么解决 |
 | [10.2 Go 实现](implementation.md) | 共同接口、叶子、组合与递归 |
 | [10.3 Go 里的组合](stdlib.md) | error 也是一棵树、标准库中的例子、什么时候用 |
-| [10.4 小结](summary.md) | 重点回顾与常见问题 |
+| [10.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[树与遍历](../../compare.md#trees)

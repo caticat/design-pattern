@@ -28,3 +28,13 @@
 **Q**：能用结构体嵌入 `type Milk struct{ Beverage }` 来写装饰器吗？
 
 能。嵌入后，没有重写的方法会自动转发给里面那层，接口方法很多时可以少写代码。代价是忘记重写某个方法时不会报错，它会悄悄走到里面那层。
+
+## 动手试试
+
+1. **加一种配料：糖浆**：写装饰器 `Syrup`（加 2 元，描述追加「 + 糖浆」），包在 `decorator.Milk{B: decorator.Coffee{}}` 外面。可直接在本章 Playground 里完成。
+
+    提示：照 `Milk` 写，持有一个 `decorator.Beverage` 字段，实现 `Cost` 和 `Description` 两个方法。检验：输出「美式 + 牛奶 + 糖浆 = 20 元」，`Coffee`、`Milk`、`Cream` 都没改。
+
+2. **把中间件顺序反过来**：在 `ExampleChain` 里去掉 `req.Header.Set("X-Token", "demo")`，分别用 `Chain(hello, Logging(os.Stdout), RequireToken)` 和 `Chain(hello, RequireToken, Logging(os.Stdout))` 处理请求。可直接在本章 Playground 里完成。
+
+    提示：用 `httptest.NewRecorder()` 接住响应，打印它的 `Code`。检验：两种顺序都返回 403，但只有前一种打印出 `-> GET /hi` 和 `<- /hi`——被拒的请求在后一种顺序下没进日志。

@@ -21,4 +21,6 @@
 | [19.1 问题与思路](problem.md) | 售货机的放行条件为什么容易漏 |
 | [19.2 Go 实现](implementation.md) | 机器委托操作，状态决定何时切换 |
 | [19.3 状态机怎么写](state-machine.md) | 用转换图检查规则，比较三种写法 |
-| [19.4 小结](summary.md) | 重点回顾与常见问题 |
+| [19.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 A 并发](../../appendix/concurrency.md) · [附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[换一种做法](../../compare.md#behaviors)

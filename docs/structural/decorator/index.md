@@ -21,4 +21,6 @@
 | [7.1 问题与思路](problem.md) | 「每种组合一个类型」为什么会爆炸，包装怎么解决 |
 | [7.2 Go 实现](implementation.md) | 组件接口、装饰器结构体与几种写法 |
 | [7.3 HTTP 中间件](middleware.md) | Go 中最常见的装饰器、标准库中的例子、什么时候用 |
-| [7.4 小结](summary.md) | 重点回顾与常见问题 |
+| [7.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[包一层](../../compare.md#wrappers) · [树与遍历](../../compare.md#trees)

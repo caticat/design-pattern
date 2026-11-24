@@ -21,4 +21,6 @@
 | [12.1 问题与思路](problem.md) | 重复数据吃光内存，拆出共享部分怎么解决 |
 | [12.2 Go 实现](implementation.md) | 享元、享元工厂、只存位置的树 |
 | [12.3 Go 里的享元](stdlib.md) | unique 包、标准库中的例子、什么时候用 |
-| [12.4 小结](summary.md) | 重点回顾与常见问题 |
+| [12.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 A 并发](../../appendix/concurrency.md) · [附录 D 怎么读类图](../../appendix/class-diagram.md)

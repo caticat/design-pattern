@@ -21,4 +21,6 @@
 | [9.1 问题与思路](problem.md) | 调用方要记住一长串步骤的麻烦，一个入口怎么解决 |
 | [9.2 Go 实现](implementation.md) | 子系统、外观结构体与一键方法 |
 | [9.3 Go 里的外观](stdlib.md) | 一个函数也是外观、标准库中的例子、什么时候用 |
-| [9.4 小结](summary.md) | 重点回顾与常见问题 |
+| [9.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[包一层](../../compare.md#wrappers) · [对象之间传消息](../../compare.md#messaging)

@@ -21,4 +21,6 @@
 | [20.1 问题与思路](problem.md) | 为什么存一份切片还不够 |
 | [20.2 Go 实现](implementation.md) | 拷贝快照、保管快照、撤销编辑 |
 | [20.3 撤销历史怎么存](undo-history.md) | 完整快照的成本、增量与保留上限 |
-| [20.4 小结](summary.md) | 重点回顾与常见问题 |
+| [20.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[撤销](../../compare.md#undo)

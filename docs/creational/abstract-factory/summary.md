@@ -28,3 +28,13 @@
 **Q**：GoF 原书里抽象工厂是抽象类，Go 里怎么对应？
 
 Go 没有继承，抽象类直接对应为**接口**，具体工厂是实现了接口的普通类型。需要在多个工厂间共享的逻辑，写成普通函数或嵌入一个公共结构体。
+
+## 动手试试
+
+1. **新增高对比主题**：在包外写一个实现 `Theme` 的 `HighContrast` 类型，配上自己的按钮和勾选框，传给 `abstractfactory.LoginForm`。可直接在本章 Playground 里完成。
+
+    提示：具体产品只需实现 `Render() string`，例如返回 `"[高对比按钮 " + label + "]"`。检验：输出 `[高对比勾选框 记住我] [高对比按钮 登录]`；`Theme`、`LoginForm`、`Light`、`Dark` 一行没改。
+
+2. **造一个「混搭」工厂**：写 `type Mixed struct{ abstractfactory.Light }`，只重写 `NewCheckbox`，让它返回 `abstractfactory.Dark{}.NewCheckbox(label)`，再传给 `LoginForm`。可直接在本章 Playground 里完成。
+
+    提示：嵌入的 `Light` 提供了 `NewButton`，所以 `Mixed` 仍满足 `Theme`。检验：能编译，输出 `[黑底勾选框 记住我] [白底按钮 登录]`——「配套」靠每个具体工厂自觉只产一族，接口本身不检查。

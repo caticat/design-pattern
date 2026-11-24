@@ -21,4 +21,6 @@
 | [1.1 问题与思路](problem.md) | 「用到时再创建」为什么在并发下出错，单例怎么解决 |
 | [1.2 Go 实现](implementation.md) | `sync.Once`、`sync.OnceValue` 与几种常见写法 |
 | [1.3 单例与全局变量](tradeoffs.md) | 两者的区别、标准库中的例子、什么时候该用 |
-| [1.4 小结](summary.md) | 重点回顾与常见问题 |
+| [1.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 A 并发](../../appendix/concurrency.md)　**相关对比**：[创建对象](../../compare.md#creators)

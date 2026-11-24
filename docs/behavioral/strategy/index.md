@@ -21,4 +21,6 @@
 | [13.1 问题与思路](problem.md) | 越写越长的 `switch` 哪里不好，怎么把算法抽出去 |
 | [13.2 Go 实现](implementation.md) | 策略接口、具体策略、上下文与运行时切换 |
 | [13.3 函数即策略](functions.md) | Go 中更轻量的函数写法、标准库中的例子、什么时候用 |
-| [13.4 小结](summary.md) | 重点回顾与常见问题 |
+| [13.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 C 函数值与回调](../../appendix/callbacks.md) · [附录 A 并发](../../appendix/concurrency.md) · [附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[换一种做法](../../compare.md#behaviors)

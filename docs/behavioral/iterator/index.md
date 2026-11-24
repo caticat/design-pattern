@@ -21,4 +21,6 @@
 | [16.1 问题与思路](problem.md) | 内部结构被迫暴露，怎么只给出「下一个」 |
 | [16.2 Go 实现](implementation.md) | 经典迭代器对象、Go 1.23 的 `iter.Seq` |
 | [16.3 Go 里的迭代器](stdlib.md) | 组合迭代器、标准库中的例子、什么时候用 |
-| [16.4 小结](summary.md) | 重点回顾与常见问题 |
+| [16.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[树与遍历](../../compare.md#trees)

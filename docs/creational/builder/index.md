@@ -21,4 +21,6 @@
 | [4.1 问题与思路](problem.md) | 参数一长调用就看不懂，分步设置怎么解决 |
 | [4.2 Go 实现](implementation.md) | 产品、建造者、Build 校验三步写完 |
 | [4.3 函数式选项与标准库](options.md) | Go 更常见的写法，三种写法怎么选，什么时候用 |
-| [4.4 小结](summary.md) | 重点回顾与常见问题 |
+| [4.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 C 函数值与回调](../../appendix/callbacks.md) · [附录 A 并发](../../appendix/concurrency.md)　**相关对比**：[创建对象](../../compare.md#creators)

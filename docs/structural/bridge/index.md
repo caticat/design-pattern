@@ -21,4 +21,6 @@
 | [11.1 问题与思路](problem.md) | 组合爆炸是怎么来的，拆成两边怎么解决 |
 | [11.2 Go 实现](implementation.md) | 实现一边、抽象一边、用字段接起来 |
 | [11.3 Go 里的桥接](stdlib.md) | slog 的 Logger 与 Handler、标准库中的例子、什么时候用 |
-| [11.4 小结](summary.md) | 重点回顾与常见问题 |
+| [11.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 A 并发](../../appendix/concurrency.md) · [附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[换一种做法](../../compare.md#behaviors)

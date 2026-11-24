@@ -28,3 +28,13 @@
 **Q**：注册表能被多个 goroutine 同时使用吗？
 
 本例不行：`Register` 会写 map。只在启动时登记、之后只调用 `Spawn` 的话没问题；运行中还要登记，就要加锁（见[附录 A](../../appendix/concurrency.md)）。
+
+## 动手试试
+
+1. **运行时派生一个新原型**：从注册表 `Spawn("goblin")` 取一只，改名为精英哥布林、`HP` 设为 60、追加技能「怒吼」，再用 `Register("elite", ...)` 登记成新原型。可直接在本章 Playground 里完成。
+
+    提示：不用写新的构造函数，也不用改 `Registry`。检验：两次 `Spawn("elite")` 得到的怪物各改各的 `Skills` 互不影响；`Spawn("goblin")` 仍是 `哥布林 HP=30 技能=[挥砍] ...`。
+
+2. **复制一支怪物小队**：把两只怪物放进 `team := []*prototype.Monster{...}`，用 `slices.Clone(team)` 复制后改副本第一只的 `HP`，再改用逐个调用 `Clone` 的方式复制一次对比。可直接在本章 Playground 里完成。
+
+    提示：`slices.Clone` 只复制切片本身，元素是指针。检验：用 `slices.Clone` 时原小队的 `team[0].HP` 也变了；逐个 `Clone` 后原小队保持 `HP=30`。

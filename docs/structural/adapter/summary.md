@@ -24,3 +24,13 @@
 **Q**：书上的「类适配器」在 Go 里怎么写？
 
 类适配器依靠继承，Go 没有继承。用结构体嵌入 `type WalletAdapter struct{ *WalletClient }` 可以近似，但 `Transfer` 等被适配者的方法也会暴露给使用方。一般用本章持有字段的「对象适配器」即可。
+
+## 动手试试
+
+1. **再接一家银行卡支付**：自己写一个「第三方」类型 `CardClient`，方法为 `Charge(amount float64, ref string) bool`（金额以元计，返回是否成功），再写 `CardAdapter` 让它满足 `adapter.Payer`。可直接在本章 Playground 里完成。
+
+    提示：仿照 `WalletAdapter`，在 `Pay` 里把 `int` 元转成 `float64`、把 `false` 转成 `error`，并加一行 `var _ adapter.Payer = CardAdapter{}`。检验：`adapter.Checkout(CardAdapter{}, "B001", 50)` 输出「支付成功」，`Checkout` 和 `WalletAdapter` 一行没改。
+
+2. **观察业务规则放进适配器的后果**：写一个 `StrictWalletAdapter`，在调用钱包前先拒绝超过 1000 元的订单，然后把它换回 `adapter.WalletAdapter`。可直接在本章 Playground 里完成。
+
+    提示：`Pay` 里先判断 `yuan > 1000` 返回错误，否则转调 `adapter.WalletAdapter{Client: a.Client}.Pay`。检验：同一笔 2000 元订单，用 `StrictWalletAdapter` 返回「支付失败: 超过 1000 元」，换回 `WalletAdapter` 却「支付成功」——限额随适配器一起丢了。

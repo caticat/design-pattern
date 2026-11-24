@@ -21,4 +21,6 @@
 | [8.1 问题与思路](problem.md) | 一次加载全部、到处写检查的麻烦，替身怎么解决 |
 | [8.2 Go 实现](implementation.md) | 公共接口、代理结构体与延迟加载 |
 | [8.3 代理的用途](uses.md) | 常见的几种代理、标准库中的例子、什么时候用 |
-| [8.4 小结](summary.md) | 重点回顾与常见问题 |
+| [8.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 A 并发](../../appendix/concurrency.md) · [附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[包一层](../../compare.md#wrappers)

@@ -21,4 +21,6 @@
 | [18.1 问题与思路](problem.md) | 把立即调用变成可排队的命令 |
 | [18.2 Go 实现](implementation.md) | 命令接口、设备操作和执行队列 |
 | [18.3 Go 里的命令](stdlib.md) | 用闭包表示命令、什么时候用 |
-| [18.4 小结](summary.md) | 重点回顾与常见问题 |
+| [18.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 C 函数值与回调](../../appendix/callbacks.md) · [附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[换一种做法](../../compare.md#behaviors) · [撤销](../../compare.md#undo)

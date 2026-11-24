@@ -24,3 +24,13 @@
 **Q**：命令和策略有什么区别？
 
 命令表达「有一件事待执行」，例如打开这盏灯；策略表达「同一件事选哪种算法」，例如运费按重量还是按件数算。同样可以用函数实现，目的不同。
+
+## 动手试试
+
+1. **一键「开工」宏命令**：在包外定义 `type Macro []command.Command`，让它的 `Execute` 依次执行每条命令；把 `Macro{command.LightOn{Lamp: lamp}, command.Func(fan.Start)}` 作为一条命令交给 `Queue`。
+
+    提示：`Macro` 实现了 `Execute` 就是 `Command`，可直接在本章 Playground 里完成。检验：`Run` 前打印 `false false`，`Run` 后打印 `true true`；`Queue` 只看到一条命令，代码没改。
+
+2. **写一个正确的撤销**：在包外写 `UndoableLightOn`（字段 `Lamp *command.Lamp` 和未导出的 `prev bool`），`Execute` 先记下 `Lamp.On` 再开灯，`Undo` 把 `Lamp.On` 恢复成 `prev`。
+
+    提示：用指针接收者，否则 `prev` 记不住；可直接在本章 Playground 里完成。检验：灯原本关着，执行再撤销后为 `false`；灯原本亮着，执行再撤销后仍为 `true`，而不是一律关灯。

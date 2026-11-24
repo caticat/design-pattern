@@ -21,4 +21,6 @@
 | [15.1 问题与思路](problem.md) | 流程被复制多份，怎么只换会变的步骤 |
 | [15.2 Go 实现](implementation.md) | 步骤接口、模板函数、钩子 |
 | [15.3 Go 里的模板方法](stdlib.md) | 嵌入不是继承、标准库中的例子、什么时候用 |
-| [15.4 小结](summary.md) | 重点回顾与常见问题 |
+| [15.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[换一种做法](../../compare.md#behaviors)

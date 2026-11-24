@@ -28,3 +28,13 @@
 **Q**：策略里可以保存状态吗？
 
 尽量不要。像 `Percent{Rate: 80}` 这样只读的配置没问题；如果策略在 `Apply` 中修改自己的字段，多个收银台共用同一个策略、或被多个 goroutine 同时调用时（见[附录 A](../../appendix/concurrency.md)），结果会互相影响。
+
+## 动手试试
+
+1. **叠加优惠**：在包外定义 `type Combo []strategy.Discount`，让它的 `Apply` 依次调用每个策略，再用 `Combo{FullReduction{Threshold: 200, Off: 30}, Percent{Rate: 80}}` 结算 300 元。
+
+    提示：`Combo` 只要实现 `Apply(total int) int` 就是 `Discount`，可直接在本章 Playground 里完成。检验：`Pay(300)` 输出 216（300 → 270 → 216），`Checkout` 和已有优惠一行没改。
+
+2. **让策略带上状态**：写一个「首单立减 50」策略 `type firstOrder struct{ used bool }`，用指针接收者在 `Apply` 里把 `used` 置为 `true`；把同一个 `&firstOrder{}` 交给两个 `NewCheckout`，各付 300 元。
+
+    提示：可直接在本章 Playground 里完成。检验：第一个收银台得 250，第二个得 300——它的「首单」被另一个收银台用掉了，这就是 Q & A 里说的共享状态问题。

@@ -24,3 +24,13 @@
 **Q**：一定要先定义接口吗？
 
 调用方要能「分不出是代理还是真实对象」，就需要接口。Go 的接口是隐式实现的，即使真实类型来自别的包，也可以在调用方这边定义一个只含所需方法的小接口，再让代理实现它。
+
+## 动手试试
+
+1. **加一个日志代理**：写 `LogProxy`，持有一个 `proxy.Video`，`Play` 先打印「[日志] 小红 请求播放」再转交，把它套在 `proxy.NewVideoProxy("星际旅行", true)` 外面。可直接在本章 Playground 里完成。
+
+    提示：`LogProxy` 只需实现 `Play(u proxy.User) (string, error)` 一个方法。检验：会员播放依次输出日志行、「加载 星际旅行（很慢）」、「小红 正在看 星际旅行」；调用方仍只拿着 `proxy.Video`，`VideoProxy` 没改。
+
+2. **让延迟加载撞上并发**：对同一个 `NewVideoProxy("海底世界", false)` 起 100 个 goroutine 同时 `Play`，用 `sync.WaitGroup` 等它们结束。需克隆仓库，写成外部测试后运行 `go test -race ./codes/structural/proxy`。
+
+    提示：再按 Q & A 换成 `sync.OnceValue`，`proxy_test.go` 里检查 `p.real` 的断言要一起改。检验：改前报 `DATA RACE`（指向 `if p.real == nil` 那几行），改后通过。

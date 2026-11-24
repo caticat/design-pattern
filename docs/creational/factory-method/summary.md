@@ -28,3 +28,13 @@
 **Q**：工厂返回 `nil` 而不是错误，可以吗？
 
 不推荐。调用方拿到 `nil` 接口后直接调用方法会 panic，出错位置离原因很远。返回 `(Notifier, error)`，让调用方在源头处理。
+
+## 动手试试
+
+1. **接入站内信**：写一个实现 `Notifier` 的 `Inbox` 类型，在 `init` 中用 `factorymethod.Register("inbox", ...)` 登记，再调用 `factorymethod.SignUpWith("inbox", "小明", factorymethod.Create)`。可直接在本章 Playground 里完成。
+
+    提示：`Send` 打印 `[站内信] 发给 %s：%s`。检验：输出 `[站内信] 发给 小明：欢迎注册`，`Create` 和 `SignUpWith` 一行没改；而 `factorymethod.SignUp("inbox", "小明")` 仍返回 `未知的通知方式 "inbox"`，因为简单工厂 `NewNotifier` 的名单是写死的。
+
+2. **让工厂返回 nil 看看会怎样**：给 `SignUpWith` 传一个返回 `(nil, nil)` 的创建函数。可直接在本章 Playground 里完成。
+
+    提示：用 `defer func() { fmt.Println(recover()) }()` 接住 panic。检验：打印 `runtime error: invalid memory address or nil pointer dereference`，出错位置在 `SignUpWith` 内部的 `n.Send`，而不是写错的那个工厂；改成返回 `error` 后，错误在源头就能看到。

@@ -38,6 +38,10 @@ theme:
     - toc.follow
     - search.highlight
 
+plugins:
+  - search:
+      lang: zh           # 需安装 jieba（见 requirements.txt）做中文分词
+
 extra_css:
   - stylesheets/extra.css
 
@@ -78,6 +82,7 @@ hooks:
 nav:
   - 首页: index.md
   - 模式目录: patterns.md
+  - 易混模式对比: compare.md
   - 创建型模式:
       - creational/index.md
       - 第 1 章 &nbsp; 单例模式:
@@ -226,4 +231,6 @@ nav:
       - appendix/concurrency.md
       - appendix/interfaces.md
       - appendix/callbacks.md
+      - appendix/class-diagram.md
+      - appendix/glossary.md
   - 许可与鸣谢: credits.md

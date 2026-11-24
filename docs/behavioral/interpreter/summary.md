@@ -35,3 +35,13 @@ flowchart LR
 **Q**：解释器和组合模式有什么关系？
 
 组合模式说明叶子和容器如何统一使用；解释器在相似的树结构上，再为每种节点规定文法和求值含义。
+
+## 动手试试
+
+1. **加一个「恰好一个」运算**：新增 `xorExpr`，`Eval` 返回左右结果不相等；在 `buildBinary` 里放行 `token.NEQ` 并构建它，让 `cold != express` 表示「冷藏、加急恰好一个」。
+
+    提示：要改包内代码，克隆仓库后运行 `go test ./codes/behavioral/interpreter`。检验：只冷藏为 `true`，两者都有或都没有为 `false`；`tagExpr`、`notExpr`、`andExpr`、`orExpr` 一行没改，原有测试照常通过。
+
+2. **什么样的标签名能用**：分别 `Parse` 规则 `易碎 && 冷藏`、`same-day && cold`、`range || cold`，打印错误或对 `{"易碎": true, "冷藏": true}` 的求值结果。
+
+    提示：可直接在本章 Playground 里完成。检验：第一条得到 `true`（中文是合法的 Go 标识符）；第二条报「不支持的运算符：-」，被读成减法；第三条因 `range` 是 Go 关键字报语法错误。标签名受 Go 标识符规则约束。

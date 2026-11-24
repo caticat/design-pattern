@@ -34,3 +34,13 @@ flowchart LR
 ```
 
 <p class="caption">一个事件可以改动多个控件的状态，测试也要检查不应改变的状态</p>
+
+## 动手试试
+
+1. **加一个配送费提示**：新增同事对象 `feeLabel`（只存 `text string`），放进 `Checkout`；在 `refresh` 里按配送选项设为「配送费 5 元」或空串，再加读取方法 `FeeText()`。
+
+    提示：要改包内代码，克隆仓库后运行 `go test ./codes/behavioral/mediator`。检验：自取时 `FeeText()` 为空，`SetDelivery(true)` 后为「配送费 5 元」，切回自取又为空；`deliveryToggle`、`addressField` 一行没改，原有测试照常通过。
+
+2. **复制协调器会发生什么**：`a := mediator.NewCheckout()`，`a.SetDelivery(true)` 后执行 `b := *a`，再 `b.SetAddress("松林路 8 号")`，打印 `b.AddressVisible()` 和 `b.CanSubmit()`。
+
+    提示：可直接在本章 Playground 里完成。检验：输出 `true false`——地址已填却不能提交，因为 `b` 里的回调仍是 `a.refresh`，刷新的是 `a` 的按钮。

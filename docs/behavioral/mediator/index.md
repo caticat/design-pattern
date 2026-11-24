@@ -21,4 +21,6 @@
 | [21.1 问题与思路](problem.md) | 清空配送地址，提交按钮为什么还亮 |
 | [21.2 Go 实现](implementation.md) | 用回调把控件接到同一个结账协调器 |
 | [21.3 协调逻辑放在哪](coordination.md) | 直接调用与集中协调的取舍 |
-| [21.4 小结](summary.md) | 重点回顾与常见问题 |
+| [21.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[对象之间传消息](../../compare.md#messaging)

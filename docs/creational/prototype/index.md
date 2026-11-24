@@ -21,4 +21,6 @@
 | [5.1 问题与思路](problem.md) | 相似对象一个个从零写，复制一份再改怎么解决 |
 | [5.2 Go 实现](implementation.md) | 原型、Clone、原型注册表三步写完 |
 | [5.3 深拷贝与标准库](copy.md) | 哪些字段会被共享，标准库的 Clone，什么时候用 |
-| [5.4 小结](summary.md) | 重点回顾与常见问题 |
+| [5.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 A 并发](../../appendix/concurrency.md)　**相关对比**：[创建对象](../../compare.md#creators)

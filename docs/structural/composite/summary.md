@@ -24,3 +24,13 @@ Go 里一般不要。把 `Add` 只放在组合类型上，文件误调 `Add` 直
 **Q**：组合和装饰器都持有同一接口的对象，区别在哪？
 
 装饰器只包**一个**对象，在它的结果上多做点什么；组合持有**多个**子节点，把它们的结果汇总起来。
+
+## 动手试试
+
+1. **加一种节点：快捷方式**：写类型 `Shortcut`，实现 `composite.Node`，`Size` 固定返回 1，用 `home.Add(Shortcut{...})` 加进示例里的「家」目录。可直接在本章 Playground 里完成。
+
+    提示：只需实现 `Name()` 和 `Size()` 两个方法；`report` 也能直接接收它。检验：`report(home)` 输出「家：821 KB」，`Dir.Size` 一行没改——对比 `bad.go` 里加快捷方式要改的地方。
+
+2. **亲手造一个环**：执行 `photos.Add(home)`，让「家」成为「照片」的子节点，再调用 `home.Size()`。可直接在本章 Playground 里完成。
+
+    提示：`Dir.Size` 会问每个子节点，`home` 问 `photos`、`photos` 又问回 `home`。检验：本机运行报 `fatal error: stack overflow`（Playground 上也可能直接因超时或内存被终止），说明环要在 `Add` 时就挡住。

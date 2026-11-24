@@ -35,3 +35,13 @@ flowchart LR
 **Q**：能把编辑器甲的快照交给乙吗？
 
 本例的快照只含文稿数据，恢复时不会检查来源；`History` 则只操作创建时绑定的编辑器。如果业务禁止跨文档恢复，就要在快照中记录文档身份，并在恢复前校验。
+
+## 动手试试
+
+1. **只保留最近 N 步的历史**：在包外写 `Limited`（字段：`*memento.Editor`、上限 `max`、`[]memento.Memento`），`Checkpoint` 调用 `Save` 压栈，超过 `max` 就丢掉最早一份；`Undo` 照 `History.Undo` 的写法调用 `Restore`。
+
+    提示：管理者只存取 `Memento`，不需要知道里面有什么；可直接在本章 Playground 里完成。检验：`max` 为 2，标题依次改为 A、B、C、D（每次改前 `Checkpoint`）；连撤三次得到 `true C`、`true B`、`false B`，`Editor` 和 `Memento` 没改。
+
+2. **撤销边界划错了会怎样**：照示例操作，但在 `Rename("周日计划")` 和 `ReplaceLine(0, "去书店")` 之间多调用一次 `h.Checkpoint()`，然后撤销两次，每次后打印标题和正文。
+
+    提示：可直接在本章 Playground 里完成。检验：第一次撤销得到「周日计划：去公园」这个用户从没见过的中间稿，第二次才回到「周末计划：去公园」——留档时机就是撤销粒度。

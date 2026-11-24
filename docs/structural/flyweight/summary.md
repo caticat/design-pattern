@@ -24,3 +24,13 @@
 **Q**：享元工厂里的对象会一直占着内存吗？
 
 本章的 map 会。种类很少时没问题；种类很多且会变化时，要么定期清理，要么用 `unique`，没人引用的值会被 GC 自动回收。
+
+## 动手试试
+
+1. **加一种上下文：树苗**：写类型 `Sapling`，字段为 `x, y int` 和 `kind *flyweight.TreeType`，`Draw` 返回 `kind.Draw(x, y) + " 树苗"`；两棵树苗都从同一个 `flyweight.NewTreeFactory()` 的 `Get("松树")` 拿享元。可直接在本章 Playground 里完成。
+
+    提示：外部状态（位置）放在 `Sapling` 里，享元和工厂原样复用。检验：「加载贴图：松树」只打印一次，两棵的 `kind` 用 `==` 比较为 `true`，`TreeType`、`TreeFactory` 没改。
+
+2. **让工厂撞上并发，再从外面加锁**：100 个 goroutine 同时对一个 `TreeFactory` 调 `Get("松树")` 或 `Get("橡树")`；再写 `SafeFactory`（`sync.Mutex` + `*flyweight.TreeFactory`），在 `Get` 里加锁后转调。包装可在 Playground 写，竞态需在本机写成外部测试后运行 `go test -race ./codes/structural/flyweight`。
+
+    提示：用 `sync.WaitGroup` 等所有 goroutine 结束。检验：直接用工厂时报 `DATA RACE`，「加载贴图」常常多于 2 行，享元被重复创建；换成 `SafeFactory` 后不再报错，恰好 2 行。

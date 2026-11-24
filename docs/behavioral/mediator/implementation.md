@@ -20,6 +20,10 @@
 
 **第 3 步**：只暴露设置配送选项、填写地址和读取状态的方法。调用方改完输入就能读取新状态，不必手动刷新。
 
+```go
+--8<-- "codes/behavioral/mediator/mediator.go:controls"
+```
+
 ## 使用示例
 
 示例先从自取切到配送，再填写、清空地址，最后切回自取。每次调用返回时，两个显示状态已经同步更新。
@@ -28,4 +32,4 @@
 --8<-- "codes/behavioral/mediator/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/PC40nbZTp9i){ .md-button .md-button--primary target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/PC40nbZTp9i){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/behavioral/mediator){ .md-button target=_blank }

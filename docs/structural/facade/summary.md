@@ -24,3 +24,13 @@
 **Q**：外观和中介者有什么区别？
 
 外观是单向的：调用方找外观，外观调子系统，子系统不认识外观。中介者是双向的：一组对象都通过中介者互相通信（第 21 章）。
+
+## 动手试试
+
+1. **再做一个「K 歌」外观**：写结构体 `Karaoke`，持有 `facade.Lights`、`facade.Speaker`、`facade.Player`，方法 `Sing(song)` 依次调光到 50%、开音响、音量 60、播放。可直接在本章 Playground 里完成。
+
+    提示：子系统都是可直接使用的零值结构体，字段不用初始化。检验：输出「灯光：调到 50%」→「音响：开机」→「音响：音量 60」→「播放器：播放 …」，`HomeTheater` 一行没改。
+
+2. **测试时替换掉整个外观**：在调用方定义接口 `Theater`（含 `Watch(movie string)` 和 `End()`），写 `MovieNight(t Theater, movie string)` 先看再关，再写一个只记录调用的 `fakeTheater`。可直接在本章 Playground 里完成。
+
+    提示：`fakeTheater` 把调用追加到 `calls []string`，方法用指针接收者。检验：传 `fakeTheater` 时不打印任何设备输出，`calls` 为 `[Watch 星际旅行 End]`；传 `facade.NewHomeTheater()` 时输出与本章示例相同。

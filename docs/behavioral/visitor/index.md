@@ -21,4 +21,6 @@
 | [22.1 问题与思路](problem.md) | 写展签和备箱子，为什么总在辨认同一批展品 |
 | [22.2 Go 实现](implementation.md) | 用 `Accept` 和 `Visit` 方法选中正确的处理逻辑 |
 | [22.3 新增操作还是新增类型](tradeoffs.md) | 访问者的取舍与标准库里的树遍历 |
-| [22.4 小结](summary.md) | 重点回顾与常见问题 |
+| [22.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
+
+**前置知识**：[附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[树与遍历](../../compare.md#trees)
