@@ -34,4 +34,4 @@
 --8<-- "codes/structural/proxy/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/USYgD9CCih6){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/structural/proxy){ .md-button target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/P6JTwWA4fPu){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/structural/proxy){ .md-button target=_blank }

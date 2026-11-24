@@ -30,4 +30,4 @@
 --8<-- "codes/behavioral/interpreter/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/3Vgjd6QYHQe){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/behavioral/interpreter){ .md-button target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/XivR68WY6Ue){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/behavioral/interpreter){ .md-button target=_blank }

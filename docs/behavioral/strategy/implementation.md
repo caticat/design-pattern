@@ -32,7 +32,7 @@
 --8<-- "codes/behavioral/strategy/example_test.go"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/gTZOdSt3c6F){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/behavioral/strategy){ .md-button target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/argmsgbejKs){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/behavioral/strategy){ .md-button target=_blank }
 
 最后一段直接用函数当策略，不必新建类型，原理见 [13.3 函数即策略](functions.md)。
 

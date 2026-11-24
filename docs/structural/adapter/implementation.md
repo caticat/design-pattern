@@ -36,6 +36,6 @@
 --8<-- "codes/structural/adapter/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/XI78AQo-QPR){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/structural/adapter){ .md-button target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/XT0D0oJWx2Q){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/structural/adapter){ .md-button target=_blank }
 
 Playground 中还包含 [6.3](stdlib.md) 的函数适配器示例，可以一起运行。

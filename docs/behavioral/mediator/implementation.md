@@ -32,4 +32,4 @@
 --8<-- "codes/behavioral/mediator/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/PC40nbZTp9i){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/behavioral/mediator){ .md-button target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/A7KWVkC5aXP){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/behavioral/mediator){ .md-button target=_blank }

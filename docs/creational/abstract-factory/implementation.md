@@ -38,4 +38,4 @@
 --8<-- "codes/creational/abstractfactory/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/FDmna2IXdTS){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/creational/abstractfactory){ .md-button target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/TLKqcXGSbRb){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/creational/abstractfactory){ .md-button target=_blank }
