@@ -2,7 +2,7 @@
 
 用图和可运行的 Go 示例，讲清 GoF 的 23 个经典设计模式：它们解决什么问题、怎么用、什么时候不用。
 
-![吉祥物 Gopher 用转换头解决插头不匹配的问题](assets/images/adapter-problem.webp){ .cover }
+![吉祥物 Gopher 站在工作台后，面前三只工具箱：模具与零件、接头与积木、齿轮与信号旗，对应创建、组合、协作三类模式](assets/images/home.webp){ .cover }
 
 ## 设计模式有什么用？
 

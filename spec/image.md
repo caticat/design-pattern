@@ -5,6 +5,7 @@
 | 图类型 | 生成方式 | 位置 |
 |---|---|---|
 | 封面大图（每章 1 张，章首页 `{ .cover }`） | 生图模型 | `docs/assets/images/<模式>.webp` |
+| 首页 / 分类页封面（各 1 张，用封面模板） | 生图模型 | `home.webp`、`creational.webp`、`structural.webp`、`behavioral.webp` |
 | 过程插图（问题节必有，其余按需；`{ .illus }` + 图注） | 生图模型 | `docs/assets/images/<模式>-<用途>.webp` |
 | 类图 / 时序图 / 流程图 | Mermaid，写在 Markdown 中 | 正文 |
 
