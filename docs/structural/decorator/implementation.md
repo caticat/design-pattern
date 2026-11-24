@@ -34,7 +34,7 @@ Playground 中还包含 [7.3 HTTP 中间件](middleware.md) 的示例，可以�
 |---|---|---|
 | 结构体持有接口 | 本例 `Milk{B: b}` | 接口有多个方法 |
 | 函数 `func(T) T` | `func(http.Handler) http.Handler`，见 7.3 | 接口只有一个方法 |
-| 构造函数接收并返回接口 | `bufio.NewReader(r io.Reader)` | 包装后要加新方法（如 `ReadString`） |
+| 构造函数接收并返回新类型 | `bufio.NewReader(r io.Reader)` 返回 `*bufio.Reader`，新增 `ReadString` | 需要给原对象加新方法；严格说这已不是装饰器（接口变了） |
 
 !!! tip "接口越小，越容易被装饰"
 

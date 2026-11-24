@@ -8,13 +8,15 @@ Go 的函数可以当值传递。策略接口只有一个方法时，可以定�
 --8<-- "codes/behavioral/strategy/strategy.go:func"
 ```
 
-`DiscountFunc(func(total int) int { ... })` 把普通函数转成 `Discount`，与标准库 `http.HandlerFunc` 是同一个技巧。
+`DiscountFunc(func(total int) int { ... })` 把普通函数转成 `Discount`，与标准库 `http.HandlerFunc` 是同一个技巧（见[附录 C](../../appendix/callbacks.md)）。
 
 | 写法 | 适合 |
 |---|---|
-| 函数参数 `func(int) int` | 策略无状态，不需要满足某个接口 |
+| 函数参数 `func(int) int` | 最轻量：例如写一个 `Apply(rule func(int) int, total int)`，直接把规则传进去；不满足已有接口时用 |
 | 函数类型 + 方法（`DiscountFunc`） | 既想直接传函数，又要满足已有接口 |
-| 接口 + 结构体（13.2 的写法） | 策略带配置参数（如满减门槛），或有多个方法 |
+| 接口 + 结构体（13.2 的写法） | 需要多个方法，或希望配置显式保存、便于比较时 |
+
+表里的「无状态」指策略不保存、也不修改会变化的共享数据；固定参数用闭包捕获即可，不算状态。
 
 ## 标准库中的策略
 
