@@ -23,8 +23,12 @@ type Monster struct {
 // --8<-- [end:monster]
 
 func (m *Monster) String() string {
-	return fmt.Sprintf("%s HP=%d 技能=%v 掉落=%v 位置=(%d,%d)",
-		m.Name, m.HP, m.Skills, m.Drops, m.Pos.X, m.Pos.Y)
+	pos := "无"
+	if m.Pos != nil {
+		pos = fmt.Sprintf("(%d,%d)", m.Pos.X, m.Pos.Y)
+	}
+	return fmt.Sprintf("%s HP=%d 技能=%v 掉落=%v 位置=%s",
+		m.Name, m.HP, m.Skills, m.Drops, pos)
 }
 
 // --8<-- [start:clone]

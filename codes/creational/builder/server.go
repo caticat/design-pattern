@@ -7,7 +7,7 @@ import (
 )
 
 // --8<-- [start:product]
-// Server 是要创建的产品。字段不导出，包外只能通过建造者创建。
+// Server 是要创建的产品。字段不导出，包外无法设置，只能通过建造者得到配好的 Server。
 type Server struct {
 	addr     string
 	port     int

@@ -12,7 +12,7 @@ func watchBad(movie string) {
 	)
 	lights.Dim(10)
 	projector.On()
-	projector.Input("播放器") // 忘了这一步：画面是黑的
+	projector.Input("播放器") // 漏掉这一步，画面就是黑的
 	speaker.On()
 	speaker.Volume(30)
 	player.Play(movie)

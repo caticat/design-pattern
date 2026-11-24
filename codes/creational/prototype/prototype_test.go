@@ -36,6 +36,9 @@ func TestCloneNilFields(t *testing.T) {
 	if c.Skills != nil || c.Drops != nil || c.Pos != nil {
 		t.Errorf("nil 字段应保持 nil：%+v", c)
 	}
+	if got, want := c.String(), "空 HP=0 技能=[] 掉落=map[] 位置=无"; got != want {
+		t.Errorf("String() = %q, want %q", got, want)
+	}
 }
 
 func TestRegisterCopiesInput(t *testing.T) {

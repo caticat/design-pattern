@@ -12,7 +12,7 @@ func readManual(path string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close() // 忘了关：文件句柄泄漏
+	defer f.Close() // 漏掉这一行，文件句柄就会泄漏
 	return io.ReadAll(f)
 }
 
