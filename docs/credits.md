@@ -12,3 +12,4 @@
 
 - **Go Gopher**：原型由 Renée French 设计，采用 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hans)。本书的吉祥物在原型基础上加入了黄色安全帽和工具腰带。参见 [Go Gopher 原作说明](https://go.dev/blog/gopher)。原作不受本书的非商业性限制。
 - **[《Hello 算法》](https://github.com/krahets/hello-algo)**：本书参考了它的图解方式、章节组织和许可方式。
+- **[Mermaid](https://mermaid.js.org/)**：结构图与流程图由 Mermaid（MIT 许可）渲染，已随站点打包，无需访问外部 CDN。

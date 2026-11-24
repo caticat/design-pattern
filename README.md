@@ -14,7 +14,7 @@ docker pull ghcr.io/caticat/design-pattern:latest
 docker run -d --name design-pattern --restart unless-stopped -p 8080:8080 ghcr.io/caticat/design-pattern:latest
 ```
 
-打开 <http://localhost:8080/>。如需用当前源码构建，先执行 `docker build -t design-pattern .`，再把运行命令里的镜像名改为 `design-pattern`。
+打开 <http://localhost:8080/>。图表库已随站点打包，内网或离线环境也能正常显示。如需用当前源码构建，先执行 `docker build -t design-pattern .`，再把运行命令里的镜像名改为 `design-pattern`。
 
 ## 本地预览
 

@@ -33,12 +33,17 @@ theme:
     - navigation.footer
     - navigation.indexes
     - content.code.copy
+    - content.action.edit
     - content.tabs.link
     - toc.follow
     - search.highlight
 
 extra_css:
   - stylesheets/extra.css
+
+extra_javascript:
+  - assets/javascripts/mermaid.min.js
+  - assets/javascripts/mermaid-global.js
 
 markdown_extensions:
   - admonition
