@@ -35,4 +35,4 @@
 --8<-- "codes/creational/builder/example_test.go:example"
 ```
 
-[:material-play: 在 Go Playground 运行](https://go.dev/play/p/3MB3HpGhCXe){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/creational/builder){ .md-button target=_blank }
+[:material-play: 在 Go Playground 运行](https://go.dev/play/p/GUWN_u7RW2f){ .md-button .md-button--primary target=_blank } [:material-github: 查看完整源码](https://github.com/caticat/design-pattern/tree/master/codes/creational/builder){ .md-button target=_blank }
