@@ -8,7 +8,7 @@
 --8<-- "codes/structural/facade/theater.go:subsystem"
 ```
 
-**第 2 步**：外观结构体，持有全部设备。字段小写，调用方看不到具体设备。
+**第 2 步**：外观结构体，持有全部设备。字段小写，调用方看不到具体设备。本例的设备都是可直接使用的零值结构体；真实项目中的设备若需要初始化，在 `NewHomeTheater` 里创建或由参数传入。
 
 ```go
 --8<-- "codes/structural/facade/facade.go:facade"
