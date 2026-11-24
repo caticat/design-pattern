@@ -9,7 +9,8 @@ site/
 *.out
 coverage.*
 
-# IDE / OS
+# IDE / OS / AI 工具本地配置
+.claude/
 .idea/
 .vscode/
 .DS_Store

@@ -11,6 +11,8 @@
 
 如果修改了带 Playground 链接的 Go 示例包，先把代码提交推到临时分支，再按 `scripts/playground.py` 的说明运行 `python -I scripts/playground.py --update`。提交更新后的链接，再合入 `master`；保留原代码提交，不要压缩或变基，否则链接绑定的版本会变。
 
+外部链接由 [Actions → links](https://github.com/caticat/design-pattern/actions/workflows/links.yml) 每周一检查一次，结果在运行摘要里，只报告、不阻塞；也可手动运行。
+
 ## 个人主页入口
 
 **个人主页的项目入口**统一维护在 [`caticat/caticat.github.io` 的链接配置](https://github.com/caticat/caticat.github.io/blob/master/src/config/site.config.js)。添加其他项目的链接时，只改这份配置；更新本书内容时，不用改个人主页。

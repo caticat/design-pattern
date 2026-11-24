@@ -1,0 +1,29 @@
+# 每周检查一次外部链接，只出报告，不阻塞提交与部署
+name: links
+
+on:
+  schedule:
+    - cron: "0 2 * * 1"   # 每周一 02:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 检查外部链接
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --scheme https --scheme http
+            --exclude '^https://go\.dev/play/'
+            --exclude '^https://caticat\.github\.io/design-pattern'
+            'docs/**/*.md' README.md CONTRIBUTING.md
+          fail: false
+          jobSummary: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
