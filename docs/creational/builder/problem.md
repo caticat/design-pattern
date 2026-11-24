@@ -32,15 +32,21 @@
 ==每个参数都有名字、可以省略；对象在 Build 时一次创建，校验也集中在这一处==。
 
 ```mermaid
-flowchart LR
-    C[调用方] --> N["NewServerBuilder(addr)<br/>必填项 + 默认值"]
-    N --> P[".Port(8443)"] --> T[".TLS()"] --> B[".Build()"]
-    B --> V{校验}
-    V -->|通过| S["*Server"]
-    V -->|不通过| E[error]
+classDiagram
+    direction LR
+    class ServerBuilder {
+        -s Server
+        +Port(p int) *ServerBuilder
+        +TLS() *ServerBuilder
+        +Build() (*Server, error)
+    }
+    class Server {
+        +String() string
+    }
+    ServerBuilder ..> Server : Build 校验通过才返回
 ```
 
-<p class="caption">设置方法只改暂存的参数；只有 Build 校验通过，调用方才拿到 Server</p>
+<p class="caption">设置方法返回建造者自己，所以能连着写；只有 Build 校验通过，调用方才拿到 Server</p>
 
 | 角色 | 职责 | 本例中 |
 |---|---|---|

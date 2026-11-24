@@ -34,3 +34,5 @@
 2. **不改包，也能运行时换渠道**：写一个可切换的渠道 `Switch`（字段 `S bridge.Sender`，`Send` 转给 `S`），用 `bridge.NewNormal(sw)` 接上它，发一条后把 `sw.S` 换掉再发一条。可直接在本章 Playground 里完成。
 
     提示：`NewNormal` 只认 `Sender` 接口，传 `*Switch` 即可，`Send` 用指针接收者。检验：先输出「短信：值班交接」，换成 `bridge.Email{}` 后输出「邮件：值班交接」，`Normal` 没加任何方法。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/structural/bridge/exercise_test.go)

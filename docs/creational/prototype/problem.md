@@ -31,14 +31,22 @@
 常配一个**原型注册表**，按名字保存原型，需要时取出副本。原型可以在运行时从配置文件加载后登记，代码不必事先知道有哪些怪物。
 
 ```mermaid
-flowchart LR
-    C[客户端] -->|"Spawn(name)"| R[原型注册表]
-    R --> P[原型 Monster]
-    P -->|Clone| N[新的 Monster]
-    N -->|改名字、血量| C
+classDiagram
+    direction LR
+    class Registry {
+        -protos map[string]*Monster
+        +Register(name string, m *Monster)
+        +Spawn(name string) (*Monster, error)
+    }
+    class Monster {
+        +Name string
+        +HP int
+        +Clone() *Monster
+    }
+    Registry o--> Monster : 按名字保存原型
 ```
 
-<p class="caption">客户端从注册表要副本；原型只负责被复制，从不直接交出去</p>
+<p class="caption">Registry 按名字保存原型，Spawn 交出的是 Clone 出的副本，原型本身从不交出去</p>
 
 | 角色 | 职责 | 本例中 |
 |---|---|---|

@@ -38,3 +38,5 @@
 2. **观察初始化 panic 后的两种结局**：分别用 `sync.OnceValue` 和 `sync.Once` 包一个必定 `panic("加载失败")` 的初始化函数，各调用两次，用 `recover` 接住。可直接在本章 Playground 里完成。
 
     提示：写一个 `try(f func()) (p any)` 辅助函数，在 `defer` 里 `p = recover()`。检验：`OnceValue` 两次都得到 `加载失败`，`Once` 第二次不再 panic、返回 `nil`；两种写法的初始化函数都只执行 1 次。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/creational/singleton/exercise_test.go)

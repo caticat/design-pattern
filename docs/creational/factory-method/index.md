@@ -23,4 +23,4 @@
 | [2.3 注册表与标准库](registry.md) | 新增类型不改工厂、标准库中的例子、什么时候用 |
 | [2.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
 
-**前置知识**：[附录 B 接口与方法](../../appendix/interfaces.md) · [附录 C 函数值与回调](../../appendix/callbacks.md) · [附录 A 并发](../../appendix/concurrency.md)　**相关对比**：[创建对象](../../compare.md#creators)
+**前置知识**：[附录 B 接口与方法](../../appendix/interfaces.md) · [附录 C 函数值与回调](../../appendix/callbacks.md) · [附录 A 并发](../../appendix/concurrency.md) · [附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[创建对象](../../compare.md#creators)

@@ -28,21 +28,35 @@
 ==「用哪一套」只决定一次：选定工厂，之后拿到的每个对象都来自同一族==。
 
 ```mermaid
-flowchart LR
-    F[LoginForm] -->|只认| T{{"Theme 接口<br/>NewButton / NewCheckbox"}}
-    T -.->|实现| L
-    T -.->|实现| D
-    subgraph 浅色族
-        L[Light] --> LB[lightButton]
-        L --> LC[lightCheckbox]
-    end
-    subgraph 深色族
-        D[Dark] --> DB[darkButton]
-        D --> DC[darkCheckbox]
-    end
+classDiagram
+    direction LR
+    class LoginForm {
+        <<函数>>
+        +LoginForm(t Theme) string
+    }
+    class Theme {
+        <<interface>>
+        +NewButton(label string) Button
+        +NewCheckbox(label string) Checkbox
+    }
+    class Light
+    class Dark
+    class Button {
+        <<interface>>
+        +Render() string
+    }
+    class Checkbox {
+        <<interface>>
+        +Render() string
+    }
+    LoginForm ..> Theme : 只认
+    Theme <|.. Light
+    Theme <|.. Dark
+    Theme ..> Button : 创建
+    Theme ..> Checkbox : 创建
 ```
 
-<p class="caption">每个具体工厂只创建自己那一族；LoginForm 只认 Theme，拿到的控件必然同族</p>
+<p class="caption">Light、Dark 各实现一次 Theme，只创建自己那一族的控件；LoginForm 只认接口，拿到的控件必然同族</p>
 
 | 角色 | 职责 | 本例中 |
 |---|---|---|

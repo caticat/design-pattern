@@ -34,3 +34,5 @@
 2. **写一个正确的撤销**：在包外写 `UndoableLightOn`（字段 `Lamp *command.Lamp` 和未导出的 `prev bool`），`Execute` 先记下 `Lamp.On` 再开灯，`Undo` 把 `Lamp.On` 恢复成 `prev`。
 
     提示：用指针接收者，否则 `prev` 记不住；可直接在本章 Playground 里完成。检验：灯原本关着，执行再撤销后为 `false`；灯原本亮着，执行再撤销后仍为 `true`，而不是一律关灯。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/behavioral/command/exercise_test.go)

@@ -45,3 +45,5 @@ flowchart LR
 2. **撤销边界划错了会怎样**：照示例操作，但在 `Rename("周日计划")` 和 `ReplaceLine(0, "去书店")` 之间多调用一次 `h.Checkpoint()`，然后撤销两次，每次后打印标题和正文。
 
     提示：可直接在本章 Playground 里完成。检验：第一次撤销得到「周日计划：去公园」这个用户从没见过的中间稿，第二次才回到「周末计划：去公园」——留档时机就是撤销粒度。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/behavioral/memento/exercise_test.go)

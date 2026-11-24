@@ -45,3 +45,5 @@ flowchart LR
 2. **什么样的标签名能用**：分别 `Parse` 规则 `易碎 && 冷藏`、`same-day && cold`、`range || cold`，打印错误或对 `{"易碎": true, "冷藏": true}` 的求值结果。
 
     提示：可直接在本章 Playground 里完成。检验：第一条得到 `true`（中文是合法的 Go 标识符）；第二条报「不支持的运算符：-」，被读成减法；第三条因 `range` 是 Go 关键字报语法错误。标签名受 Go 标识符规则约束。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/behavioral/interpreter/exercise_test.go)（练习 1 需改动包内代码，答案见提示）

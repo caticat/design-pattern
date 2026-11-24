@@ -44,3 +44,5 @@ flowchart LR
 2. **值接收者的访问者**：写 `Counter{N int}`，两个访问方法都用值接收者执行 `c.N++`，把 `Counter{}` 交给上面三件展品的 `Accept`，最后打印 `N`。
 
     提示：可直接在本章 Playground 里完成。检验：能编译，但 `N` 仍是 0——每次 `Accept` 收到的是副本；改成指针接收者并传 `&Counter{}` 后得到 3。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/behavioral/visitor/exercise_test.go)

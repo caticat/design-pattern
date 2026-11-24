@@ -23,4 +23,4 @@
 | [5.3 深拷贝与标准库](copy.md) | 哪些字段会被共享，标准库的 Clone，什么时候用 |
 | [5.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
 
-**前置知识**：[附录 A 并发](../../appendix/concurrency.md)　**相关对比**：[创建对象](../../compare.md#creators)
+**前置知识**：[附录 A 并发](../../appendix/concurrency.md) · [附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[创建对象](../../compare.md#creators)

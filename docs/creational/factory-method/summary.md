@@ -38,3 +38,5 @@
 2. **让工厂返回 nil 看看会怎样**：给 `SignUpWith` 传一个返回 `(nil, nil)` 的创建函数。可直接在本章 Playground 里完成。
 
     提示：用 `defer func() { fmt.Println(recover()) }()` 接住 panic。检验：打印 `runtime error: invalid memory address or nil pointer dereference`，出错位置在 `SignUpWith` 内部的 `n.Send`，而不是写错的那个工厂；改成返回 `error` 后，错误在源头就能看到。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/creational/factorymethod/exercise_test.go)

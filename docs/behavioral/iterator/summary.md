@@ -34,3 +34,5 @@
 2. **忽略 yield 的返回值会怎样**：复制 `Filter` 写一个 `BadFilter`，把 `if keep(v) && !yield(v) { return }` 改成只调用 `yield(v)`；在歌单「晨光、雨夜、海风、雨巷」上 `for range BadFilter(...)`，取到第一首就 `break`。
 
     提示：可直接在本章 Playground 里完成；要让 `break` 之后还有符合条件的歌，否则看不到问题。检验：打印「雨夜」后程序 panic，信息为 `range function continued iteration after function for loop body returned false`。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/behavioral/iterator/exercise_test.go)（练习 2 会故意 panic，不写成测试）

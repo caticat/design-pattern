@@ -23,4 +23,4 @@
 | [3.3 扩展方向与标准库](extend.md) | 加一族容易、加一种产品难，标准库中的例子，什么时候用 |
 | [3.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
 
-**相关对比**：[创建对象](../../compare.md#creators)
+**前置知识**：[附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[创建对象](../../compare.md#creators)

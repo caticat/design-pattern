@@ -34,3 +34,5 @@
 2. **让延迟加载撞上并发**：对同一个 `NewVideoProxy("海底世界", false)` 起 100 个 goroutine 同时 `Play`，用 `sync.WaitGroup` 等它们结束。需克隆仓库，写成外部测试后运行 `go test -race ./codes/structural/proxy`。
 
     提示：再按 Q & A 换成 `sync.OnceValue`，`proxy_test.go` 里检查 `p.real` 的断言要一起改。检验：改前报 `DATA RACE`（指向 `if p.real == nil` 那几行），改后通过。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/structural/proxy/exercise_test.go)（练习 2 需改动包内代码并用 `-race` 观察，答案见提示）

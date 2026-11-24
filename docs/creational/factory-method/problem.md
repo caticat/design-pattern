@@ -26,14 +26,28 @@
 ==注册流程决定何时创建，传入的函数决定如何创建==。GoF 原版把创建步骤留给子类重写；Go 用函数参数提供同样的扩展点。
 
 ```mermaid
-flowchart LR
-    A[调用方] -->|传入创建函数| B[SignUpWith]
-    B -->|调用| C[create]
-    C -->|返回| D[Notifier]
-    B -->|Send| D
+classDiagram
+    direction LR
+    class SignUpWith {
+        <<函数>>
+        +SignUpWith(kind, user string, create func(string) (Notifier, error)) error
+    }
+    class Notifier {
+        <<interface>>
+        +Send(to, msg string)
+    }
+    class EmailNotifier {
+        +SMTPHost string
+    }
+    class SMSNotifier {
+        +Sign string
+    }
+    SignUpWith ..> Notifier : 调用 create 得到
+    Notifier <|.. EmailNotifier
+    Notifier <|.. SMSNotifier
 ```
 
-<p class="caption">注册流程只调用传入的 create，再用它返回的通知器发消息</p>
+<p class="caption">注册流程只认 Notifier 接口：调用传入的 create 拿到通知器，再用它发消息</p>
 
 | 角色 | 本例中 |
 |---|---|

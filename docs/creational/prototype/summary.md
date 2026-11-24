@@ -38,3 +38,5 @@
 2. **复制一支怪物小队**：把两只怪物放进 `team := []*prototype.Monster{...}`，用 `slices.Clone(team)` 复制后改副本第一只的 `HP`，再改用逐个调用 `Clone` 的方式复制一次对比。可直接在本章 Playground 里完成。
 
     提示：`slices.Clone` 只复制切片本身，元素是指针。检验：用 `slices.Clone` 时原小队的 `team[0].HP` 也变了；逐个 `Clone` 后原小队保持 `HP=30`。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/creational/prototype/exercise_test.go)

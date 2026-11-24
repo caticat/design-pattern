@@ -34,3 +34,5 @@
 2. **亲手踩一次嵌入陷阱**：在包外写 `Base`（实现 `Header`、`Row`，再加方法 `Run(rows)`，内部调用 `templatemethod.Export(b, rows)`），让 `Fancy` 嵌入 `Base` 并只重写 `Header`；分别打印 `Fancy{}.Run(rows)` 和 `templatemethod.Export(Fancy{}, rows)`。
 
     提示：可直接在本章 Playground 里完成。检验：前者表头仍是 `Base` 的，后者才是 `Fancy` 的——流程挂在被嵌入的类型上就会掉进 15.3 的陷阱，流程放在接收接口的函数里才不会。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/behavioral/templatemethod/exercise_test.go)

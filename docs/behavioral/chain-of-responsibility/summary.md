@@ -34,3 +34,5 @@
 2. **把链的顺序串反**：用导出的 `chain.Approver` 手工组装 总监(50000) → 经理(5000) → 组长(1000)，再审批 800、3000、80000 元的差旅单。
 
     提示：从链尾往前建，最后一个是链头；可直接在本章 Playground 里完成。检验：800 和 3000 元都变成「总监批准」，经理和组长永远轮不到；80000 元仍是「无人能批」——每一环只管自己，顺序正确与否全靠串链的人。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/behavioral/chain/exercise_test.go)

@@ -38,3 +38,5 @@
 2. **把建造者当模板复用会怎样**：先 `base := builder.NewServerBuilder("localhost").Timeout(5 * time.Second)`，再分别 `a, _ := base.Port(8080).Build()` 和 `b, err := base.TLS().Build()`。可直接在本章 Playground 里完成。
 
     提示：设置方法改的是 `base` 指向的同一个建造者，`Build` 只复制产品。检验：`a` 为 `localhost:8080 ... tls=false`，`b` 为 `localhost:8080 ... tls=true`、`err` 为 `nil`——`b` 继承了给 `a` 设的端口；想要两份独立配置，就各自从 `NewServerBuilder` 开始。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/creational/builder/exercise_test.go)

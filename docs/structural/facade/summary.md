@@ -34,3 +34,5 @@
 2. **测试时替换掉整个外观**：在调用方定义接口 `Theater`（含 `Watch(movie string)` 和 `End()`），写 `MovieNight(t Theater, movie string)` 先看再关，再写一个只记录调用的 `fakeTheater`。可直接在本章 Playground 里完成。
 
     提示：`fakeTheater` 把调用追加到 `calls []string`，方法用指针接收者。检验：传 `fakeTheater` 时不打印任何设备输出，`calls` 为 `[Watch 星际旅行 End]`；传 `facade.NewHomeTheater()` 时输出与本章示例相同。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/structural/facade/exercise_test.go)

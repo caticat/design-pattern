@@ -23,4 +23,4 @@
 | [4.3 函数式选项与标准库](options.md) | Go 更常见的写法，三种写法怎么选，什么时候用 |
 | [4.4 小结](summary.md) | 重点回顾、常见问题与动手试试 |
 
-**前置知识**：[附录 C 函数值与回调](../../appendix/callbacks.md) · [附录 A 并发](../../appendix/concurrency.md)　**相关对比**：[创建对象](../../compare.md#creators)
+**前置知识**：[附录 C 函数值与回调](../../appendix/callbacks.md) · [附录 A 并发](../../appendix/concurrency.md) · [附录 D 怎么读类图](../../appendix/class-diagram.md)　**相关对比**：[创建对象](../../compare.md#creators)

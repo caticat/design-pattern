@@ -44,3 +44,5 @@ flowchart LR
 2. **复制协调器会发生什么**：`a := mediator.NewCheckout()`，`a.SetDelivery(true)` 后执行 `b := *a`，再 `b.SetAddress("松林路 8 号")`，打印 `b.AddressVisible()` 和 `b.CanSubmit()`。
 
     提示：可直接在本章 Playground 里完成。检验：输出 `true false`——地址已填却不能提交，因为 `b` 里的回调仍是 `a.refresh`，刷新的是 `a` 的按钮。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/behavioral/mediator/exercise_test.go)（练习 1 需改动包内代码，答案见提示）

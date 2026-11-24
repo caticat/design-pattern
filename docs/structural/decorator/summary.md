@@ -38,3 +38,5 @@
 2. **把中间件顺序反过来**：在 `ExampleChain` 里去掉 `req.Header.Set("X-Token", "demo")`，分别用 `Chain(hello, Logging(os.Stdout), RequireToken)` 和 `Chain(hello, RequireToken, Logging(os.Stdout))` 处理请求。可直接在本章 Playground 里完成。
 
     提示：用 `httptest.NewRecorder()` 接住响应，打印它的 `Code`。检验：两种顺序都返回 403，但只有前一种打印出 `-> GET /hi` 和 `<- /hi`——被拒的请求在后一种顺序下没进日志。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/structural/decorator/exercise_test.go)

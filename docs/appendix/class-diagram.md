@@ -28,6 +28,7 @@ classDiagram
 |---|---|---|
 | 第一行 `Checkout` | 类型名 | `type Checkout struct{...}` |
 | `<<interface>>` | 这是接口 | `type Discount interface{...}` |
+| `<<函数>>` | 这是普通函数，不是类型；Go 里常用函数代替只有一个方法的类型 | `func LoginForm(t Theme) string` |
 | `+Rate int`、`-discount Discount` | 字段：名字在前，类型在后 | 结构体字段 |
 | `+Pay(total int) int` | 方法：参数和返回值照 Go 签名写 | 方法 |
 | `+` / `-` | 导出 / 未导出 | 首字母大写 / 小写 |

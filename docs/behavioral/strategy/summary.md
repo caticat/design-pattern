@@ -38,3 +38,5 @@
 2. **让策略带上状态**：写一个「首单立减 50」策略 `type firstOrder struct{ used bool }`，用指针接收者在 `Apply` 里把 `used` 置为 `true`；把同一个 `&firstOrder{}` 交给两个 `NewCheckout`，各付 300 元。
 
     提示：可直接在本章 Playground 里完成。检验：第一个收银台得 250，第二个得 300——它的「首单」被另一个收银台用掉了，这就是 Q & A 里说的共享状态问题。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/behavioral/strategy/exercise_test.go)

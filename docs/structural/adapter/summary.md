@@ -34,3 +34,5 @@
 2. **观察业务规则放进适配器的后果**：写一个 `StrictWalletAdapter`，在调用钱包前先拒绝超过 1000 元的订单，然后把它换回 `adapter.WalletAdapter`。可直接在本章 Playground 里完成。
 
     提示：`Pay` 里先判断 `yuan > 1000` 返回错误，否则转调 `adapter.WalletAdapter{Client: a.Client}.Pay`。检验：同一笔 2000 元订单，用 `StrictWalletAdapter` 返回「支付失败: 超过 1000 元」，换回 `WalletAdapter` 却「支付成功」——限额随适配器一起丢了。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/structural/adapter/exercise_test.go)

@@ -34,3 +34,5 @@ Go 里一般不要。把 `Add` 只放在组合类型上，文件误调 `Add` 直
 2. **亲手造一个环**：执行 `photos.Add(home)`，让「家」成为「照片」的子节点，再调用 `home.Size()`。可直接在本章 Playground 里完成。
 
     提示：`Dir.Size` 会问每个子节点，`home` 问 `photos`、`photos` 又问回 `home`。检验：本机运行报 `fatal error: stack overflow`（Playground 上也可能直接因超时或内存被终止），说明环要在 `Add` 时就挡住。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/structural/composite/exercise_test.go)（练习 2 会栈溢出崩溃，无法写成测试）

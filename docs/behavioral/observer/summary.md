@@ -34,3 +34,5 @@ panic 会中断整个循环，后面的都收不到。需要隔离时，在循�
 2. **一个观察者 panic，其余受连累**：依次订阅 `Stock{}`、一个 `OnPaid` 里直接 `panic` 的观察者、`Points{}`，然后 `Pay`；再写一个包装类型 `Safe{ob}`，在转发 `OnPaid` 前 `defer recover()`，把中间那个包起来重试。
 
     提示：可直接在本章 Playground 里完成，第一次 `Pay` 要包在带 `recover` 的函数里才能继续往下跑。检验：第一次只打印到「库存」，「积分」丢了；包上 `Safe` 后「积分：+29」照常出现。
+
+参考答案：[exercise_test.go](https://github.com/caticat/design-pattern/blob/master/codes/behavioral/observer/exercise_test.go)
