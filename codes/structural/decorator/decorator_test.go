@@ -30,8 +30,9 @@ func TestBeverage(t *testing.T) {
 
 // 反例与装饰器结果一致。
 func TestBadMatches(t *testing.T) {
-	if (CoffeeWithMilkAndCream{}).Cost() != (Cream{Milk{Coffee{}}}).Cost() {
-		t.Fatal("反例与装饰器价格不一致")
+	bad, good := Order{Milk: true, Cream: true}, Cream{Milk{Coffee{}}}
+	if bad.Cost() != good.Cost() || bad.Description() != good.Description() {
+		t.Fatal("反例与装饰器结果不一致")
 	}
 }
 

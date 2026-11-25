@@ -18,7 +18,7 @@
 | 访问一个对象前先做权限检查、缓存或延迟创建 | [代理](structural/proxy/index.md) |
 | 给一堆复杂子系统一个简单入口 | [外观](structural/facade/index.md) |
 | 文件夹和文件、部门和员工这样的树，统一处理 | [组合](structural/composite/index.md) |
-| 两个维度都会变，不想写出 M×N 个类型 | [桥接](structural/bridge/index.md) |
+| 发什么、怎么发都会变，不想每种消息里都 `switch` 渠道 | [桥接](structural/bridge/index.md) |
 | 大量相似对象太占内存 | [享元](structural/flyweight/index.md) |
 | 同一件事有多种算法，按条件切换 | [策略](behavioral/strategy/index.md) |
 | 一处变化，自动通知多个关心它的地方 | [观察者](behavioral/observer/index.md) |

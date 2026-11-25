@@ -4,8 +4,8 @@
 
 !!! takeaway "划重点"
     - 装饰器 = **同一接口的层层包装**，每层只叠加一件事。
-    - 用组合代替「每种组合一个类型」，n 种功能只需 n 个装饰器。
-    - Go 中最常见的形式是 HTTP 中间件 `func(http.Handler) http.Handler` 和 `io.Reader` 包装。
+    - Go 里就是**结构体持有同一个接口**，或 `func(http.Handler) http.Handler`；加一种功能只写一个类型。
+    - 附加功能很少、只是数据时，几个字段 + `if` 更简单；每层是一段行为时（中间件、`io.Reader` 包装）才值得包装。
 
 ## Q & A
 

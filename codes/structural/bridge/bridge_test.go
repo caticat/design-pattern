@@ -5,9 +5,9 @@ import (
 	"os"
 )
 
-// 反例输出相同，只是每种组合都要单独写一个类型。
+// 反例输出相同，只是每种消息里都要 switch 一遍渠道。
 func Example_bad() {
-	for _, n := range []Notice{normalSMS{}, normalEmail{}, urgentSMS{}, urgentEmail{}} {
+	for _, n := range []Notice{badNormal{"sms"}, badNormal{"email"}, badUrgent{"sms"}, badUrgent{"email"}} {
 		n.Notify("磁盘快满了")
 	}
 	// Output:

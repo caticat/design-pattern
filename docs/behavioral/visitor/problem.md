@@ -46,3 +46,5 @@ classDiagram
 | 元素（Element） | `Exhibit`、`Painting`、`Sculpture` | 保存数据，选择匹配自身类型的访问方法 |
 | 访问者 | `Visitor`、`LabelVisitor`、`PackingVisitor` | 为每种展品定义一项操作怎样执行 |
 | 对象结构（Object Structure） | `[]Exhibit` | 保存不同类型的展品，供调用方遍历 |
+
+说白了，Go 里给一组类型加操作，**最常见的写法就是 type switch**，标准库的 `go/ast` 也是这样做的。`Accept` + `Visitor` 多换来的只有一点：新加类型却漏写处理时，编译器会报错。类型多、操作多、漏一处代价大时才值得；否则 type switch 更简单。

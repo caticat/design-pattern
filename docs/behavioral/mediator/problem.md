@@ -49,3 +49,5 @@ classDiagram
 |---|---|---|
 | 中介者 | `Checkout` | 接收变化，计算地址框和按钮的新状态 |
 | 同事对象（Colleague） | `deliveryToggle`、`addressField`、`submitButton` | 保存自己的状态；两个输入控件负责发出变化通知 |
+
+说白了，中介者就是**把跨控件的规则收进一个 `refresh` 函数，任何输入一变就调用它**。如果所有改动都经过 `Checkout` 自己的方法，在每个方法末尾调一次 `refresh()` 就够了；本例让控件持有 `changed` 回调，是为了控件被界面事件直接改动时也能通知到。

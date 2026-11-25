@@ -54,3 +54,13 @@ classDiagram
 | 使用产品的流程 | `SignUpWith` |
 | 提供创建方式的函数 | `NewNotifier` 或 `Create` |
 | 产品接口与具体产品 | `Notifier`、`EmailNotifier`、`SMSNotifier` 等 |
+
+说白了，Go 里从简到繁有三档：
+
+| 写法 | 什么时候用 |
+|---|---|
+| 调用方直接传一个造好的 `Notifier` 进来 | 只用一次、提前就能造好，最简单 |
+| 一个 `NewNotifier(kind)` 函数集中创建（简单工厂） | 多处都要按名字创建，规则固定 |
+| 把创建函数传进去（工厂方法） | 由流程决定**何时、创建几个**，如 `hmac.New(sha256.New, key)`：hmac 内部要自己新建哈希 |
+
+「工厂方法」原指让子类重写一个创建方法；Go 没有子类，就是**一个创建函数当参数**。

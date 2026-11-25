@@ -4,7 +4,7 @@ import "fmt"
 
 // --8<-- [start:bad]
 // 反例：每加一种展品，都要找到并更新各项操作里的类型分支。
-func badLabels(exhibits []any) []string {
+func badLabels(exhibits []Exhibit) []string {
 	var labels []string
 	for _, e := range exhibits {
 		switch x := e.(type) {
@@ -17,7 +17,7 @@ func badLabels(exhibits []any) []string {
 	return labels
 }
 
-func badPacking(exhibits []any) (flatBoxes, crates int) {
+func badPacking(exhibits []Exhibit) (flatBoxes, crates int) {
 	for _, e := range exhibits {
 		switch e.(type) {
 		case Painting:

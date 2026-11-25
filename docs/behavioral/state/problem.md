@@ -51,3 +51,5 @@ classDiagram
 | 上下文（Context） | 提供稳定的操作入口，持有当前状态 | `Machine` |
 | 状态（State） | 约定每个阶段必须处理哪些操作 | `vendingState` |
 | 具体状态（Concrete State） | 实现本阶段的行为，必要时切换状态 | `ready`、`paid`、`soldOut` |
+
+说白了，状态模式就是**机器里放一个接口字段存当前状态**，换状态就是给这个字段换一个值。状态少、分支短时，`type phase int` 加一个 `switch` 更简单，几种写法的取舍见 [19.3](state-machine.md)。

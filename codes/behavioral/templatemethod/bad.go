@@ -14,7 +14,7 @@ func exportCSV(rows []Record) string {
 	var b strings.Builder
 	b.WriteString("name,score\n")
 	for _, r := range rows {
-		b.WriteString((CSV{}).Row(r) + "\n")
+		b.WriteString((CSV{}).Row(r) + "\n") // CSV.Row 负责转义逗号和引号，见 15.2
 	}
 	return b.String()
 }
