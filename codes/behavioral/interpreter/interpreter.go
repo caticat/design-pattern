@@ -35,6 +35,12 @@ type orExpr struct{ left, right Expr }
 
 func (e orExpr) Eval(p Parcel) bool { return e.left.Eval(p) || e.right.Eval(p) }
 
+// Tag、Not、And、Or 用来在代码里直接拼规则树。
+func Tag(name string) Expr { return tagExpr(name) }
+func Not(e Expr) Expr      { return notExpr{inner: e} }
+func And(l, r Expr) Expr   { return andExpr{left: l, right: r} }
+func Or(l, r Expr) Expr    { return orExpr{left: l, right: r} }
+
 // --8<-- [end:operators]
 
 // --8<-- [start:parse]

@@ -1,18 +1,11 @@
 package interpreter
 
-import "fmt"
-
 // --8<-- [start:bad]
-// 反例：用整条规则文本查找写死的判断逻辑。
-func matchByText(rule string, p Parcel) (bool, error) {
-	switch rule {
-	case "fragile && cold":
-		return p["fragile"] && p["cold"], nil
-	case "fragile && express":
-		return p["fragile"] && p["express"], nil
-	default:
-		return false, fmt.Errorf("未登记的规则：%q", rule)
-	}
+// 反例：规则直接写成 Go 代码。
+func toTray(p Parcel) bool {
+	return p["fragile"] && p["cold"] // 上周的规则：易碎且冷藏
 }
 
+// 这周运营要改成「易碎，且冷藏或加急」：改这一行、跑测试、发版。
+// 下周再改，再来一遍。把规则写进配置也没用：程序读不懂一行文字。
 // --8<-- [end:bad]

@@ -52,14 +52,24 @@ func TestParseRejectsInvalidRule(t *testing.T) {
 	}
 }
 
-func TestMatchByTextNeedsExactRule(t *testing.T) {
-	parcel := Parcel{"fragile": true, "cold": true}
-	if got, err := matchByText("fragile && cold", parcel); err != nil || !got {
-		t.Fatalf("已登记规则结果为 (%v, %v)，期望 (true, nil)", got, err)
+func TestToTrayIsFixed(t *testing.T) {
+	if !toTray(Parcel{"fragile": true, "cold": true}) {
+		t.Error("易碎且冷藏应入托盘")
 	}
-	for _, rule := range []string{"fragile&&cold", "fragile && (cold || express)"} {
-		if _, err := matchByText(rule, parcel); err == nil {
-			t.Errorf("反例不应识别 %q", rule)
+	if toTray(Parcel{"fragile": true, "express": true}) {
+		t.Error("写死的规则不认加急")
+	}
+}
+
+func TestHandBuiltMatchesParsed(t *testing.T) {
+	hand := And(Tag("fragile"), Or(Tag("cold"), Not(Tag("express"))))
+	parsed, err := Parse("fragile && (cold || !express)")
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, p := range []Parcel{nil, {"fragile": true}, {"fragile": true, "express": true}, {"fragile": true, "cold": true, "express": true}} {
+		if hand.Eval(p) != parsed.Eval(p) {
+			t.Errorf("%v：手拼与解析结果不同", p)
 		}
 	}
 }
