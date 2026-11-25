@@ -18,7 +18,7 @@
 
 ![三步：一杯美式，套上一层牛奶，再套一层奶油](../../assets/images/decorator-layers.webp){ .illus }
 
-<p class="caption">每层的 Cost 先问里面那层，再加上自己的部分：15 → 15 + 3 → 15 + 3 + 5</p>
+<p class="caption">美式在最里，牛奶包住美式，奶油再包住牛奶层。计价从里往外加：15 → 18 → 23。</p>
 
 ```go
 --8<-- "codes/structural/decorator/example_test.go:example"

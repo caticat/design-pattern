@@ -37,12 +37,13 @@ classDiagram
 
 ## 连线看关系
 
-本书只用到下面 4 种线。箭头都**从「知道对方的一边」指向「被知道的一边」**。
+先看箭头或菱形在谁那一端：三角指向接口，菱形标在容器一端；普通箭头指向被持有或被调用的一方。
 
 | 线 | 名称 | 读作 | 对应的 Go | 例子 |
 |---|---|---|---|---|
 | `A <\|.. B`（虚线 + 空心三角） | 实现 | B 实现了接口 A | B 拥有 A 要求的全部方法，不用写 `implements` | [策略](../behavioral/strategy/problem.md)：`Percent` 实现 `Discount` |
-| `A o--> B`（实线 + 空心菱形） | 聚合 | A 持有 B，B 由外部传入，可单独存在、可替换 | A 的字段类型是 B 或 `[]B` | [观察者](../behavioral/observer/problem.md)：`Shop` 持有一组 `Observer` |
+| `A o--> B`（实线 + 空心菱形） | 聚合 | A 持有 B，B 可以独立存在，也可以被多个对象共享 | A 的字段类型是 B 或 `[]B` | [观察者](../behavioral/observer/problem.md)：`Shop` 持有一组 `Observer` |
+| `A *-- B`（实线 + 实心菱形） | 组合 | A 管理一组作为自身组成部分的 B | 通常是 A 的字段 | [中介者](../behavioral/mediator/problem.md)：`Checkout` 管理三个控件 |
 | `A --> B`（实线箭头） | 关联 | A 长期知道 B，会调用它 | 通常是 A 的字段 | [外观](../structural/facade/problem.md)：`HomeTheater` 调各个设备 |
 | `A ..> B`（虚线箭头） | 依赖 | A 只在某次调用中用到 B | B 出现在参数、返回值或函数体里 | [迭代器](../behavioral/iterator/problem.md)：`Playlist` 创建 `Iterator` |
 

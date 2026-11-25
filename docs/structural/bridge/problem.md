@@ -4,9 +4,9 @@
 
 监控系统要发告警：消息分普通和紧急两种，渠道有短信和邮件两种，以后还会加微信、加定时消息。
 
-![左：一个塞满的格子柜，每格是一封信绑在一种送信工具上，吉祥物满头大汗还在往里塞；右：一摞信和一排送信工具分开放，吉祥物从容地把一封信交给信鸽](../../assets/images/bridge-problem.webp){ .illus }
+![左边普通信和盖红印的紧急信各指向一只信鸽；右边两封信的箭头指向同一只信鸽。](../../assets/images/bridge-problem.webp){ .illus }
 
-<p class="caption">信和送信工具绑在一起，每加一样都要全部重来；分开放，随取随配</p>
+<p class="caption">用信鸽代表新增渠道：左边两类消息各接一次，右边只加一份发送实现，两类消息都能用。</p>
 
 最直觉的写法：渠道用一个字符串表示，每种消息里 `switch` 一下：
 
@@ -45,8 +45,8 @@ classDiagram
     }
     Notice <|.. Normal
     Notice <|.. Urgent
-    Normal o--> Sender : 桥
-    Urgent o--> Sender : 桥
+    Normal o--> Sender : sender 字段
+    Urgent o--> Sender : sender 字段
     Sender <|.. SMS
     Sender <|.. Email
 ```
@@ -55,8 +55,8 @@ classDiagram
 
 | 角色 | 职责 | 本例中 |
 |---|---|---|
-| 抽象（Abstraction） | 调用方使用的高层接口，持有实现 | `Notice` |
-| 扩展抽象（Refined Abstraction） | 抽象的不同变体 | `Normal`、`Urgent` |
+| 抽象（Abstraction） | 调用方使用的发消息接口 | `Notice` |
+| 扩展抽象（Refined Abstraction） | 各管一种消息格式，持有 `Sender` | `Normal`、`Urgent` |
 | 实现（Implementor） | 底层操作的接口 | `Sender` |
 | 具体实现（Concrete Implementor） | 底层操作的不同做法 | `SMS`、`Email` |
 
