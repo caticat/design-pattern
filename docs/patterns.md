@@ -1,8 +1,14 @@
 # 模式目录
 
-按分类浏览：[创建型](creational/index.md) · [结构型](structural/index.md) · [行为型](behavioral/index.md)；本页提供[按问题查](#by-problem)和[模式关系图](#map)。
+按分类浏览：[创建型](creational/index.md) · [结构型](structural/index.md) · [行为型](behavioral/index.md)。也可以[按问题查](#by-problem)，或看[易混模式对比](compare.md)。
 
-分不清相近的模式？看[易混模式对比](compare.md)。
+## 先读哪些 { #reading-order }
+
+- **第一次学**：[适配器](structural/adapter/index.md) → [策略](behavioral/strategy/index.md) → [装饰器](structural/decorator/index.md)，再看[工厂方法](creational/factory-method/index.md)和[外观](structural/facade/index.md)。
+- **按场景选**：例如，请求要过多道检查，先看[责任链](behavioral/chain-of-responsibility/index.md)；订单行为随阶段变化，先看[状态](behavioral/state/index.md)。
+- **先了解用途**：[享元](structural/flyweight/index.md)用于大量对象共享数据，[访问者](behavioral/visitor/index.md)用于给固定类型加操作，[解释器](behavioral/interpreter/index.md)用于执行可配置的小语言。遇到这些问题再读实现。
+
+章首页的「使用频率」是对设计思路在 Go 项目中有多常见的**经验判断**，不是行业统计、重要性排名或使用建议。配置项多，先试配置结构体；共享实例可以创建一次再传入，不必做成全局单例。
 
 ## 按问题查：我想…… { #by-problem }
 

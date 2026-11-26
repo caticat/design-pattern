@@ -14,8 +14,8 @@
 
 ## 从哪里开始？
 
-- **第一次学**：先读[适配器](structural/adapter/index.md) → [策略](behavioral/strategy/index.md) → [装饰器](structural/decorator/index.md)，分别看接口转换、算法选择和功能叠加。
-- **按问题查**：打开[模式目录](patterns.md)，按分类或「我想……」的场景表来找。
+- **第一次学**：看[先读哪些](patterns.md#reading-order)，不用按章号读，也不用一次学完 23 个。
+- **按问题查**：直接看[「我想……」场景表](patterns.md#by-problem)。
 - **分不清相近的模式**：看[易混模式对比](compare.md)，例如装饰器和代理、策略和状态。
 
 每章先讲问题，再给 Go 实现和在线运行示例，最后讨论适用范围；小结末尾有两道「动手试试」，改几行代码就能验证理解。看不懂类图先读[怎么读类图](appendix/class-diagram.md)，遇到生词查[术语表](appendix/glossary.md)。不熟悉[接口与方法](appendix/interfaces.md)、[函数值与回调](appendix/callbacks.md)或[并发](appendix/concurrency.md)，可以读到相关示例时再查附录。
